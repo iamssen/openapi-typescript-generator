@@ -1,0 +1,24 @@
+/**
+* {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
+* @export
+* @enum {string}
+*/
+export enum {{classname}} {
+{{#allowableValues}}
+  {{#enumVars}}
+    {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
+  {{/enumVars}}
+{{/allowableValues}}
+}
+
+export function from{{classname}}Json(json: unknown, ignoreDiscriminator: boolean = false): {{classname}} {
+if ( !({{#allowableValues}}{{#enumVars}} json === {{{value}}}{{^-last}} ||{{/-last}}{{/enumVars}}{{/allowableValues}}) ) {
+  return json as {{classname}};
+}
+
+throw new Error(`"json" is not a {{classname}}`);
+}
+
+export function to{{classname}}Json(value?: {{classname}} | null): any {
+return value;
+}

@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "version": "2020.08.30",
+  "author": "Name <id@mail.com>",
+  "license": "MIT",
+  "repository": "github:githubid/repository",
+  "workspaces": [
+    "package"
+  ],
+  "scripts": {
+    "create:codegen": "exit 1; java -jar package/bin/openapi-generator.jar meta -o codegen -n ssen-typescript -p ssen.codegen",
+    "codegen:build": "cd codegen; mvn package; cp target/ssen-typescript-openapi-generator-1.0.0.jar ../package/bin/ssen-typescript-openapi-generator.jar",
+    "codegen:test": "cd codegen; mvn test",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\""
+  },
+  "lint-staged": {
+    "**/src/{**/*,*}.{ts,tsx}": [
+      "prettier --write",
+      "eslint"
+    ]
+  },
+  "devDependencies": {
+    "@handbook/markdown-source-import": "^1.0.1",
+    "@ssen/eslint-config": "^1.3.0",
+    "@ssen/prettier-config": "^1.2.0",
+    "eslint": "^7.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.1.1"
+  }
+}
