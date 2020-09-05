@@ -1,59 +1,59 @@
 {{#hasImports}}
-  import {
+import {
   {{#imports}}
-    {{{.}}},
+  {{{.}}},
   {{/imports}}
   {{#oneOf}}
-    from{{{.}}}Json,
-    to{{{.}}}Json,
+  from{{{.}}}Json,
+  to{{{.}}}Json,
   {{/oneOf}}
-  } from './';
+} from './';
 {{/hasImports}}
 
 /**
 * @type {{classname}}
 * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
-* @export
 */
 export type {{classname}} = {{#discriminator}}{{#mappedModels}}{ {{discriminator.propertyName}}: '{{mappingName}}' } & {{modelName}}{{^-last}} | {{/-last}}{{/mappedModels}}{{/discriminator}}{{^discriminator}}{{#oneOf}}{{{.}}}{{^-last}} | {{/-last}}{{/oneOf}}{{/discriminator}};
 
-export function from{{classname}}Json(json: any, ignoreDiscriminator: boolean = false): {{classname}} {
-if ((json === undefined) || (json === null)) {
-throw new Error(`"{{json}}" is not a {{classname}}`);
-}
-{{#discriminator}}
-  switch (json['{{discriminator.propertyName}}']) {
-  {{#discriminator.mappedModels}}
-    case '{{mappingName}}':
-    return {...from{{modelName}}Json(json, true), {{discriminator.propertyName}}: '{{mappingName}}'};
-  {{/discriminator.mappedModels}}
-  default:
-  throw new Error(`No variant of {{classname}} exists with '{{discriminator.propertyName}}=${json['{{discriminator.propertyName}}']}'`);
+export function from{{classname}}Json<T extends ({{classname}} | undefined | null)>(json: any, ignoreDiscriminator: boolean = false): T {
+  if (json === undefined || json === null) {
+    return json;
   }
-{{/discriminator}}
-{{^discriminator}}
+
+  {{#discriminator}}
+  switch (json['{{discriminator.propertyName}}']) {
+    {{#discriminator.mappedModels}}
+    case '{{mappingName}}':
+      return {...from{{modelName}}Json(json, true), {{discriminator.propertyName}}: '{{mappingName}}'} as T;
+    {{/discriminator.mappedModels}}
+    default:
+      throw new Error(`No variant of {{classname}} exists with '{{discriminator.propertyName}}=${json['{{discriminator.propertyName}}']}'`);
+  }
+  {{/discriminator}}
+
+  {{^discriminator}}
   return { {{#oneOf}}...from{{{.}}}Json(json, true){{^-last}}, {{/-last}}{{/oneOf}} };
-{{/discriminator}}
+  {{/discriminator}}
 }
 
 export function to{{classname}}Json(value?: {{classname}} | null): any {
-if (value === undefined) {
-return undefined;
-}
-if (value === null) {
-return null;
-}
-{{#discriminator}}
-  switch (value['{{discriminator.propertyName}}']) {
-  {{#discriminator.mappedModels}}
-    case '{{mappingName}}':
-    return to{{modelName}}Json(value);
-  {{/discriminator.mappedModels}}
-  default:
-  throw new Error(`No variant of {{classname}} exists with '{{discriminator.propertyName}}=${value['{{discriminator.propertyName}}']}'`);
+  if (value === undefined || value === null) {
+    return undefined;
   }
-{{/discriminator}}
-{{^discriminator}}
+
+  {{#discriminator}}
+  switch (value['{{discriminator.propertyName}}']) {
+    {{#discriminator.mappedModels}}
+    case '{{mappingName}}':
+      return to{{modelName}}Json(value);
+    {{/discriminator.mappedModels}}
+    default:
+      throw new Error(`No variant of {{classname}} exists with '{{discriminator.propertyName}}=${value['{{discriminator.propertyName}}']}'`);
+  }
+  {{/discriminator}}
+
+  {{^discriminator}}
   return { {{#oneOf}}...to{{{.}}}Json(value){{^-last}}, {{/-last}}{{/oneOf}} };
-{{/discriminator}}
+  {{/discriminator}}
 }

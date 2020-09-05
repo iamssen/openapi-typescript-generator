@@ -1,15 +1,17 @@
 {
   "private": true,
   "version": "2020.08.30",
-  "author": "Name <id@mail.com>",
+  "author": "SSen <i@ssen.name>",
   "license": "MIT",
-  "repository": "github:githubid/repository",
+  "repository": "github:rocket-hangar/openapi-typescript-generator",
   "workspaces": [
-    "package"
+    "cli",
+    "source",
+    "out/packages/*"
   ],
   "scripts": {
-    "create:codegen": "exit 1; java -jar package/bin/openapi-generator.jar meta -o codegen -n ssen-typescript -p ssen.codegen",
-    "codegen:build": "cd codegen; mvn package; cp target/ssen-typescript-openapi-generator-1.0.0.jar ../package/bin/ssen-typescript-openapi-generator.jar",
+    "build": "bash scripts/build.sh",
+    "build:packages": "yarn workspace source run build --out-dir $PWD/out/packages",
     "codegen:test": "cd codegen; mvn test",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\""

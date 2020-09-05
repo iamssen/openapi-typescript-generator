@@ -14,28 +14,32 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/ObjA'
-                  - $ref: '#/components/schemas/ObjB'
-                discriminator:
-                  propertyName: realtype
-                  mapping:
-                    a-type: '#/components/schemas/ObjA'
-                    b-type: '#/components/schemas/ObjB'
+                $ref: '#/components/schemas/CustomOneOfSchema'
+#                FIXME do not use inline oneOf and discriminator
+#                oneOf:
+#                  - $ref: '#/components/schemas/ObjA'
+#                  - $ref: '#/components/schemas/ObjB'
+#                discriminator:
+#                  propertyName: realtype
+#                  mapping:
+#                    a-type: '#/components/schemas/ObjA'
+#                    b-type: '#/components/schemas/ObjB'
     post:
       operationId: createState
       requestBody:
         content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/ObjA'
-                  - $ref: '#/components/schemas/ObjB'
-                discriminator:
-                  propertyName: realtype
-                  mapping:
-                    a-type: '#/components/schemas/ObjA'
-                    b-type: '#/components/schemas/ObjB'
+                $ref: '#/components/schemas/CustomOneOfSchema'
+#                FIXME do not use inline oneOf and discriminator
+#                oneOf:
+#                  - $ref: '#/components/schemas/ObjA'
+#                  - $ref: '#/components/schemas/ObjB'
+#                discriminator:
+#                  propertyName: realtype
+#                  mapping:
+#                    a-type: '#/components/schemas/ObjA'
+#                    b-type: '#/components/schemas/ObjB'
         required: true
       responses:
         '201':
