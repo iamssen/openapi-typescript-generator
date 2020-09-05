@@ -317,8 +317,23 @@ export class {{classname}} extends runtime.BaseAPI {
     {{/operation}}
 }
 {{/operations}}
-{{#hasEnums}}
 
+{{#operations}}
+{{#operation}}
+// {{nickname}}: 
+//    {{#responses}}
+//    code: {{code}}, is1xx: {{is1xx}}, is2xx: {{is2xx}}, is3xx: {{is3xx}}, is4xx: {{is4xx}}, is5xx: {{is5xx}}
+//    message: {{message}}
+//    dataType: {{dataType}}, baseType: {{baseType}}, containerType: {{containerType}}, simpleType: {{simpleType}}
+//    isAnyType: {{isAnyType}}, isBinary: {{isBinary}}, isBoolean: {{isBoolean}}, isByteArray: {{isByteArray}}, isDate: {{isDate}}, 
+//    isDateTime: {{isDateTime}}, isDefault: {{isDefault}}, isDouble: {{isDouble}}, isEmail: {{isEmail}}, isFile: {{isFile}}, isFloat: {{isFloat}},
+//    isFreeFormObject: {{isFreeFormObject}}, isInteger: {{isInteger}}, isListContainer: {{isListContainer}}, isLong: {{isLong}}, isMapContainer: {{isMapContainer}},
+//    isModel: {{isModel}}, isNumber: {{isNumber}}, isNumeric: {{isNumeric}}, isString: {{isString}}, isUuid: {{isUuid}}
+//    {{/responses}}
+{{/operation}}
+{{/operations}}
+
+{{#hasEnums}}
 {{#operations}}
 {{#operation}}
 {{#allParams}}

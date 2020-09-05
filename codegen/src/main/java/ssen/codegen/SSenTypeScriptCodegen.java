@@ -47,8 +47,8 @@ public class SSenTypeScriptCodegen extends AbstractTypeScriptClientCodegen {
         // at the moment
         importMapping.clear();
 
-        outputFolder = "generated-code/typescript-fetch";
-        embeddedTemplateDir = templateDir = "typescript-fetch";
+        outputFolder = "generated-code/ssen-typescript";
+        embeddedTemplateDir = templateDir = "ssen-typescript";
 
         this.apiTemplateFiles.put("apis.mustache", ".ts");
         this.modelTemplateFiles.put("models.mustache", ".ts");

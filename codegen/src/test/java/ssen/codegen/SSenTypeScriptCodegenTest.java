@@ -10,9 +10,9 @@ public class SSenTypeScriptCodegenTest {
   public void launchCodeGenerator() {
     final CodegenConfigurator configurator = new CodegenConfigurator().setGeneratorName("ssen-typescript");
 
-    String[][] targets = { {
-        "https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/2_0/petstore.yaml",
-        "out/ssen-typescript" } };
+    String[][] targets = {
+        // { "../resources/petstore.json", "../gen/ssen-typescript/petstore" },
+        { "../resources/3_0/asciidoc/api-docs.json", "../gen/ssen-typescript/api-docs" }, };
 
     DefaultGenerator generator = new DefaultGenerator();
 

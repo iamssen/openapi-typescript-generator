@@ -27,3 +27,4 @@ codegen/.classpath
 codegen/.factorypath
 codegen/.project
 codegen/.settings
+gen/
