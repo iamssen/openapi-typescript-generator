@@ -1,22 +1,12 @@
-import { parseGenericModelJson, jsonifyGenericModel } from '@rocket-scripts/openapi';
+import { GenericModel } from '@rocket-scripts/openapi';
 
 {{#hasImports}}
 import {
   {{#imports}}
   {{{.}}},
-  from{{.}}Json,
-  to{{.}}Json,
   {{/imports}}
 } from './';
 {{/hasImports}}
-
-{{#discriminator}}
-  import {
-  {{#discriminator.mappedModels}}
-    from{{modelName}}Json{{^-last}},{{/-last}}
-  {{/discriminator.mappedModels}}
-  } from './';
-{{/discriminator}}
 
 /**
  * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
@@ -38,92 +28,72 @@ export interface {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
   {{/vars}}
 }
 
-{{#hasVars}}
-const options = {
-  {{#parent}}
-  parent: { from: from{{{parent}}}Json, to: to{{{parent}}}Json },
-  {{/parent}}
-  properties: {
-    names: {
-      {{#vars}}
-      '{{baseName}}': '{{name}}',
-      {{/vars}}
-    },
-    baseNames: {
-      {{#vars}}
-      '{{name}}': '{{baseName}}',
-      {{/vars}}
-    },
-    date: new Set<string>([
-      {{#vars}}
-      {{#isDate}}{{baseName}},{{/isDate}}
-      {{/vars}}
-    ]),
-    dateTime: new Set<string>([
-      {{#vars}}
-      {{#isDateTime}}{{baseName}},{{/isDateTime}}
-      {{/vars}}
-    ]),
-    required: new Set<string>([
-      {{#vars}}
-      {{#required}}{{baseName}},{{/required}}
-      {{/vars}}
-    ]),
-    nullable: new Set<string>([
-      {{#vars}}
-      {{#isNullable}}{{baseName}},{{/isNullable}}
-      {{/vars}}
-    ]),
-    listContainer: {
-      {{#vars}}
-      {{#isListContainer}}'{{baseName}}': { from: from{{#items}}{{datatype}}{{/items}}Json, to: to{{#items}}{{datatype}}{{/items}}Json },{{/isListContainer}}
-      {{/vars}}
-    },
-    mapContainer: {
-      {{#vars}}
-      {{#isMapContainer}}'{{baseName}}': { from: from{{#items}}{{datatype}}{{/items}}Json, to: to{{#items}}{{datatype}}{{/items}}Json },{{/isMapContainer}}
-      {{/vars}}
-    },
-    map: {
-      {{#vars}}
-      {{^isPrimitiveType}}{{#isListContainer}}{{#isMapContainer}}'{{baseName}}': { from: from{{#items}}{{datatype}}{{/items}}Json, to: to{{#items}}{{datatype}}{{/items}}Json },{{/isMapContainer}}{{/isListContainer}}{{/isPrimitiveType}}
-      {{/vars}}
-    },
-  }
-};
-{{/hasVars}}
-
-export function from{{classname}}Json<T extends ({{classname}} | undefined | null)>(json: unknown, ignoreDiscriminator: boolean = false): T {
-  {{#hasVars}}
-
+export const {{classname}}Model: GenericModel = {
+  classname: '{{classname}}',
+  type: 'generic',
+  parent: {{#parent}}'{{{parent}}}'{{/parent}}{{^parent}}undefined{{/parent}},
   {{#discriminator}}
-  if (!ignoreDiscriminator) {
-    {{#discriminator.mappedModels}}
-    if (json['{{discriminator.propertyBaseName}}'] === '{{mappingName}}') {
-      return from{{modelName}}Json(json, true);
-    }
-    {{/discriminator.mappedModels}}
-  }
+  discriminator: {
+    propertyName: '{{discriminator.propertyName}}',
+    mappedModels: [
+      {{#discriminator.mappedModels}}
+      { mappingName: '{{mappingName}}', modelName: '{{modelName}}' },
+      {{/discriminator.mappedModels}}
+    ],
+  },
   {{/discriminator}}
-
-  return parseGenericModelJson<T>(json, options);
-
-  {{/hasVars}}
-
-  {{^hasVars}}
-    return json as {{classname}};
-  {{/hasVars}}
-}
-
-export function to{{classname}}Json(value?: {{classname}} | null): any {
   {{#hasVars}}
-    return jsonifyGenericModel(value, options);
+  vars: {
+    {{#vars}}
+    '{{name}}': {
+      name: '{{name}}',
+      baseName: '{{baseName}}',
+      datatype: '{{datatype}}',
+      required: {{required}},
+      itemsDataType: {{#items}}'{{datatype}}'{{/items}}{{^items}}undefined{{/items}},
+      isAnyType: {{isAnyType}},
+      isBinary: {{isBinary}},
+      isBoolean: {{isBoolean}},
+      isByteArray: {{isByteArray}},
+      isCircularReference: {{isCircularReference}},
+      isContainer: {{isContainer}},
+      isDate: {{isDate}},
+      isDateTime: {{isDateTime}},
+      isDiscriminator: {{isDiscriminator}},
+      isDouble: {{isDouble}},
+      isEmail: {{isEmail}},
+      isEnum: {{isEnum}},
+      isFile: {{isFile}},
+      isFloat: {{isFloat}},
+      isFreeFormObject: {{isFreeFormObject}},
+      isInherited: {{isInherited}},
+      isInteger: {{isInteger}},
+      isListContainer: {{isListContainer}},
+      isLong: {{isLong}},
+      isMapContainer: {{isMapContainer}},
+      isModel: {{isModel}},
+      isNullable: {{isNullable}},
+      isNumber: {{isNumber}},
+      isNumeric: {{isNumeric}},
+      isPrimitiveType: {{isPrimitiveType}},
+      isReadOnly: {{isReadOnly}},
+      isSelfReference: {{isSelfReference}},
+      isString: {{isString}},
+      isUri: {{isUri}},
+      isUuid: {{isUuid}},
+      isWriteOnly: {{isWriteOnly}},
+      isXmlAttribute: {{isXmlAttribute}},
+      isXmlWrapped: {{isXmlWrapped}},
+    },
+    {{/vars}}
+  },
+  baseNames: {
+    {{#vars}}
+    '{{name}}': '{{baseName}}',
+    {{/vars}}
+  },
   {{/hasVars}}
-
-  {{^hasVars}}
-    return value;
-  {{/hasVars}}
-}
+};
 
 {{#hasEnums}}
 {{#vars}}
@@ -144,7 +114,7 @@ export enum {{classname}}{{enumName}} {
 
 // {{classname}}:
 //    title: {{title}}
-//    description: {{description}}, parentModel: {{parentModel}}
+//    description: {{description}}, parent: {{parent}}
 //    dataType: {{dataType}}, simpleType: {{simpleType}}
 //    {{#vars}}
 //

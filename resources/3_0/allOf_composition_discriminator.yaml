@@ -78,6 +78,10 @@ components:
         - $ref: '#/components/schemas/Lizard'
       discriminator:
         propertyName: petType
+        # FIXME (Seoyoen) Must add a mapping
+        mapping:
+          cat: '#/components/schemas/Cat'
+          lizard: '#/components/schemas/Lizard'
         # per https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#discriminatorObject
         # this discriminator must be included to use it as a hint to pick a schema
     MyPetsNoDisc:
@@ -101,3 +105,18 @@ components:
     C:
       allOf:
         - $ref: '#/components/schemas/B'
+    X:
+      type: object
+      properties:
+        x:
+          type: string
+    Y:
+      type: object
+      properties:
+        y:
+          type: integer
+          format: int32
+    Z:
+      allOf:
+        - $ref: '#/components/schemas/X'
+        - $ref: '#/components/schemas/Y'

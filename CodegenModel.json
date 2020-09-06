@@ -1,0 +1,15 @@
+model -> {CodegenModel@3138} "CodegenModel{parent='null', parentSchema='null', interfaces=null, allParents=null, parentModel=null, interfaceModels=null, children=null, anyOf=[], oneOf=[], allOf=[], name='Category', classname='Category', title='null', description='null', classVarName='category', modelJson='{
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "name" : {
+      "type" : "string"
+    }
+  },
+  "xml" : {
+    "name" : "Category"
+  }
+}', dataType='object', xmlPrefix='null', xmlNamespace='null', xmlName='Category', classFilename='Category', unescapedDescription='null', discriminator=null, defaultValue='null', arrayModelType='null', isAlias=false, isString=false, isInteger=false, isLong=false, isNumber=false, isNumeric=false, isFloat=false, isDouble=false, vars=[CodegenProperty{openApiType='integer', baseName='id', complexType='null', getter='getId', setter='setId', description='null', dataType='number', datatypeWithEnum='number', dataFormat='int"

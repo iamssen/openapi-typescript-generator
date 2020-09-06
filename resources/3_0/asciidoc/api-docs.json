@@ -329,6 +329,16 @@
                             }
                         }
                     },
+                    "4XX": {
+                        "description": "????",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
                     "404": {
                         "description": "project not found",
                         "content": {
@@ -444,6 +454,24 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "inline schema",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "a": {
+                                            "type": "number"
+                                        },
+                                        "b": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -480,6 +508,24 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Task"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "inline schema2",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         }

@@ -1,12 +1,10 @@
+import { OneOfModel } from '@rocket-scripts/openapi';
+
 {{#hasImports}}
 import {
   {{#imports}}
   {{{.}}},
   {{/imports}}
-  {{#oneOf}}
-  from{{{.}}}Json,
-  to{{{.}}}Json,
-  {{/oneOf}}
 } from './';
 {{/hasImports}}
 
@@ -16,44 +14,24 @@ import {
 */
 export type {{classname}} = {{#discriminator}}{{#mappedModels}}{ {{discriminator.propertyName}}: '{{mappingName}}' } & {{modelName}}{{^-last}} | {{/-last}}{{/mappedModels}}{{/discriminator}}{{^discriminator}}{{#oneOf}}{{{.}}}{{^-last}} | {{/-last}}{{/oneOf}}{{/discriminator}};
 
-export function from{{classname}}Json<T extends ({{classname}} | undefined | null)>(json: any, ignoreDiscriminator: boolean = false): T {
-  if (json === undefined || json === null) {
-    return json;
-  }
-
+export const {{classname}}Model: OneOfModel = {
+  classname: '{{classname}}',
+  type: 'oneOf',
   {{#discriminator}}
-  switch (json['{{discriminator.propertyName}}']) {
-    {{#discriminator.mappedModels}}
-    case '{{mappingName}}':
-      return {...from{{modelName}}Json(json, true), {{discriminator.propertyName}}: '{{mappingName}}'} as T;
-    {{/discriminator.mappedModels}}
-    default:
-      throw new Error(`No variant of {{classname}} exists with '{{discriminator.propertyName}}=${json['{{discriminator.propertyName}}']}'`);
-  }
+  discriminator: {
+    propertyName: '{{discriminator.propertyName}}',
+    mappedModels: [
+      {{#discriminator.mappedModels}}
+      { mappingName: '{{mappingName}}', modelName: '{{modelName}}' },
+      {{/discriminator.mappedModels}}
+    ],
+  },
   {{/discriminator}}
-
   {{^discriminator}}
-  return { {{#oneOf}}...from{{{.}}}Json(json, true){{^-last}}, {{/-last}}{{/oneOf}} };
-  {{/discriminator}}
-}
-
-export function to{{classname}}Json(value?: {{classname}} | null): any {
-  if (value === undefined || value === null) {
-    return undefined;
-  }
-
-  {{#discriminator}}
-  switch (value['{{discriminator.propertyName}}']) {
-    {{#discriminator.mappedModels}}
-    case '{{mappingName}}':
-      return to{{modelName}}Json(value);
-    {{/discriminator.mappedModels}}
-    default:
-      throw new Error(`No variant of {{classname}} exists with '{{discriminator.propertyName}}=${value['{{discriminator.propertyName}}']}'`);
-  }
-  {{/discriminator}}
-
-  {{^discriminator}}
-  return { {{#oneOf}}...to{{{.}}}Json(value){{^-last}}, {{/-last}}{{/oneOf}} };
+  oneOf: [
+    {{#oneOf}}
+    '{{{.}}}',
+    {{/oneOf}}
+  ],
   {{/discriminator}}
 }

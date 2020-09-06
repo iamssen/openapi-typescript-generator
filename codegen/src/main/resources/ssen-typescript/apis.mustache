@@ -1,6 +1,7 @@
 /* eslint-disable */
 {{>licenseInfo}}
 
+import { typeSerializer } from '../models';
 import * as runtime from '../runtime';
 import { APIExceptionError } from '@rocket-scripts/openapi';
 
@@ -8,8 +9,6 @@ import { APIExceptionError } from '@rocket-scripts/openapi';
 import {
   {{#imports}}
   {{className}},
-  from{{className}}Json,
-  to{{className}}Json,
   {{/imports}}
 } from '../models';
 {{/imports.0}}
@@ -51,7 +50,7 @@ export class {{classname}} extends runtime.BaseAPI {
     {{/allParams}}
 
     {{! query }}
-    const queryParameters: Record<string, string> = {};
+    const queryParameters: runtime.HTTPQuery = {};
 
     {{#queryParams}}
     {{#isListContainer}}
@@ -207,11 +206,11 @@ export class {{classname}} extends runtime.BaseAPI {
       {{#hasBodyParam}}
       {{#bodyParam}}
       {{#isContainer}}
-      body: requestParameters.{{paramName}}{{#isListContainer}}{{#items}}{{^isPrimitiveType}}.map(to{{datatype}}Json){{/isPrimitiveType}}{{/items}}{{/isListContainer}},
+      body: requestParameters.{{paramName}}{{#isListContainer}}{{#items}}{{^isPrimitiveType}}?.map(typeSerializer.toJsonObject('{{datatype}}')){{/isPrimitiveType}}{{/items}}{{/isListContainer}},
       {{/isContainer}}
       {{^isContainer}}
       {{^isPrimitiveType}}
-      body: to{{dataType}}Json(requestParameters.{{paramName}}),
+      body: typeSerializer.toJsonObject('{{dataType}}')(requestParameters.{{paramName}}),
       {{/isPrimitiveType}}
       {{#isPrimitiveType}}
       body: requestParameters.{{paramName}} as any,
@@ -225,6 +224,10 @@ export class {{classname}} extends runtime.BaseAPI {
     });
   }
 
+  /**
+   * @throws {APIExceptionError}
+   * @throws {APISerializeError}
+   */
   async {{nickname}}Response(response: Response): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
     if (response.status >= 200 && response.status < 300) {
       {{#returnType}}
@@ -245,31 +248,31 @@ export class {{classname}} extends runtime.BaseAPI {
       {{/returnTypeIsPrimitive}}
       {{^returnTypeIsPrimitive}}
       {{#isListContainer}}
-      return response.json().then(jsonValue => jsonValue.map(from{{returnBaseType}}Json));
+      return response.json().then(typeSerializer.toValueObjectList('{{returnBaseType}}'));
       {{/isListContainer}}
       {{^isListContainer}}
       {{#isMapContainer}}
-      return response.json().then(jsonValue => runtime.mapValues(jsonValue, jsonValue => from{{returnBaseType}}Json<{{returnBaseType}}>(jsonValue)));
+      return response.json().then(typeSerializer.toValueObjectMap('{{returnBaseType}}'));
       {{/isMapContainer}}
       {{^isMapContainer}}
-      return response.json().then(jsonValue => from{{returnBaseType}}Json<{{returnBaseType}}>(jsonValue));
+      return response.json().then(typeSerializer.toValueObject('{{returnBaseType}}'));
       {{/isMapContainer}}
       {{/isListContainer}}
       {{/returnTypeIsPrimitive}}
       {{/isResponseFile}}
       {{/returnType}}
     } else {
-      switch (response.status) {
+      switch (response.status.toString()) {
         {{#responses}}
         {{^is2xx}}
-        {{#dataType}}
-        case {{code}}: // {{message}}
+        {{#baseType}}
+        case '{{code}}': // {{message}}
           throw new APIExceptionError({
-            exception: from{{dataType}}Json<{{dataType}}>(await response.json()),
+            exception: typeSerializer.toValueObject('{{baseType}}')(await response.json()),
             message: `{{message}}`,
             response,
           });
-        {{/dataType}}
+        {{/baseType}}
         {{/is2xx}}
         {{/responses}}
         default:
@@ -278,6 +281,10 @@ export class {{classname}} extends runtime.BaseAPI {
     }
   }
 
+  /**
+   * @throws {APIExceptionError}
+   * @throws {APISerializeError}
+   */
   async {{nickname}}({{#allParams.0}}requestParameters: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Request{{/allParams.0}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
     const { url, init } = this.{{nickname}}Request({{#allParams.0}}requestParameters{{/allParams.0}});
     const response = await fetch(url, init);

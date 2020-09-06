@@ -1,4 +1,4 @@
-import { parseEnumModelJson } from '@rocket-scripts/openapi';
+import { EnumModel } from '@rocket-scripts/openapi';
 
 /**
  * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
@@ -10,21 +10,10 @@ export enum {{classname}} {
   {{{name}}} = {{{value}}},
   {{/enumVars}}
   {{/allowableValues}}
-};
+}
 
-const options = {
+export const {{classname}}Model: EnumModel = {
+  classname: '{{classname}}',
+  type: 'enum',
   enumVars: new Set([{{#allowableValues}}{{#enumVars}}{{{value}}}{{^-last}}, {{/-last}}{{/enumVars}}{{/allowableValues}}]),
 };
-
-export function from{{classname}}Json<T extends string | null | undefined>(json: unknown, ignoreDiscriminator: boolean = false): T {
-  return parseEnumModelJson<T>(json, options);
-}
-
-export function to{{classname}}Json<T extends {{classname}} | undefined | null>(value: T): T {
-  return value;
-}
-
-// {{classname}}
-//    title: {{title}}
-//    description: {{description}}, parentModel: {{parentModel}}
-//    dataType: {{dataType}}, simpleType: {{simpleType}}

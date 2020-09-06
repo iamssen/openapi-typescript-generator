@@ -10,11 +10,13 @@ public class SSenTypeScriptCodegenTest {
   public void launchCodeGenerator() {
     final CodegenConfigurator configurator = new CodegenConfigurator().setGeneratorName("ssen-typescript");
 
-    String[][] targets = { { "../resources/petstore.json", "../gen/ssen-typescript/petstore" },
-        { "../resources/3_0/asciidoc/api-docs.json", "../gen/ssen-typescript/api-docs" },
-        { "../resources/3_0/composed-oneof.yaml", "../gen/ssen-typescript/composed-oneof" },
-        { "../resources/integrationtests/typescript/objectsWithEnums-spec.json",
-            "../gen/ssen-typescript/objectsWithEnums-spec" }, };
+    String[][] targets = {
+      { "../resources/3_0/allOf_composition_discriminator.yaml", "../gen/ssen-typescript/allOf_composition_discriminator" },
+      { "../resources/petstore.json", "../gen/ssen-typescript/petstore" },
+      { "../resources/3_0/asciidoc/api-docs.json", "../gen/ssen-typescript/api-docs" },
+      { "../resources/3_0/composed-oneof.yaml", "../gen/ssen-typescript/composed-oneof" },
+      { "../resources/integrationtests/typescript/objectsWithEnums-spec.json", "../gen/ssen-typescript/objectsWithEnums-spec" },
+    };
 
     DefaultGenerator generator = new DefaultGenerator();
 
