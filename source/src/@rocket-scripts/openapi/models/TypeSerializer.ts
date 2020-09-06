@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { APISerializeError } from '../errors/APISerializeError';
+
 export interface Property {
   name: string;
   baseName: string;
@@ -85,19 +87,8 @@ export interface OneOfModel {
 
 export type Model = EnumModel | GenericModel | OneOfModel;
 
-export class APISerializeError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'APISerializeError';
-  }
-}
-
 export class TypeSerializer {
   constructor(readonly models: Record<string, Model>) {}
-
-  addModel = (classname: string, model: Model) => {
-    this.models[classname] = model;
-  };
 
   toEnumObject = (model: EnumModel, jsonObject: any) => {
     if (model.enumVars.has(jsonObject)) {

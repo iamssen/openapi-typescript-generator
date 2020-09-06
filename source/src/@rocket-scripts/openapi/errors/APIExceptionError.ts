@@ -6,16 +6,14 @@ interface APIExceptionErrorParams<T> {
 
 export class APIExceptionError<T> extends Error {
   readonly exception: T;
-  readonly message: string;
   readonly response: Response;
 
   constructor({ exception, message, response }: APIExceptionErrorParams<T>) {
-    super();
+    super(message);
 
     this.name = 'APIExceptionError';
 
     this.exception = exception;
-    this.message = message;
     this.response = response;
   }
 }
