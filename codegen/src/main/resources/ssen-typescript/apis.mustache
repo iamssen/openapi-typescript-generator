@@ -1,36 +1,48 @@
-/* eslint-disable */
 {{>licenseInfo}}
-
-import { typeSerializer } from '../models';
-import * as runtime from '../runtime';
-import { APIExceptionError } from '@rocket-scripts/openapi';
-
-{{#imports.0}}
+import type {
+  UrlQueryInput,
+  OperationConfiguration,
+  RequestConfiguration,
+  ResponseConfiguration,
+  FetchParameters,
+} from '@rocket-scripts/openapi';
 import {
+  pipe,
+  querystring,
+  fetchRequest,
+  APIRequestError,
+  APIExceptionError,
+} from '@rocket-scripts/openapi';
+{{#imports.0}}
+import type {
   {{#imports}}
   {{className}},
   {{/imports}}
 } from '../models';
 {{/imports.0}}
+import { typeSerializer } from '../models';
 
-{{#operations}}
-{{#operation}}
-{{#allParams.0}}
-export interface {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Request {
-  {{#allParams}}
-  {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
-  {{/allParams}}
-}
-{{/allParams.0}}
-{{/operation}}
-{{/operations}}
+/* eslint-disable */
 
 {{#operations}}
 /**
  * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
  */
-export class {{classname}} extends runtime.BaseAPI {
+export namespace {{classVarName}}Api {
+  {{! interface NameRequestParameters }}
   {{#operation}}
+  {{#allParams.0}}
+  export interface {{operationIdCamelCase}}RequestParameters {
+    {{#allParams}}
+    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
+    {{/allParams}}
+  }
+  {{/allParams.0}}
+  {{/operation}}
+
+  {{#operation}}
+
+  {{! function nameRequest() }}
   /**
    {{#notes}}
    * {{&notes}}
@@ -39,18 +51,28 @@ export class {{classname}} extends runtime.BaseAPI {
    * {{&summary}}
    {{/summary}}
    */
-  {{nickname}}Request({{#allParams.0}}requestParameters: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Request{{/allParams.0}}): runtime.FetchParams {
+  export const {{nickname}}Request = ({
+      basePath = '',
+      querystringStringify = querystring,
+      username,
+      password,
+      apiKey,
+      accessToken,
+      headers,
+      credentials,
+    }: RequestConfiguration = {}) =>
+    ({{#allParams.0}}requestParameters: {{operationIdCamelCase}}RequestParameters{{/allParams.0}}): FetchParameters => {
     {{! check required }}
     {{#allParams}}
     {{#required}}
     if (requestParameters.{{paramName}} === null || requestParameters.{{paramName}} === undefined) {
-      throw new runtime.RequiredError('{{paramName}}','Required parameter requestParameters.{{paramName}} was null or undefined when calling {{nickname}}.');
+      throw new APIRequestError(`Required parameter requestParameters.{{paramName}} was null or undefined when calling {{nickname}}.`);
     }
     {{/required}}
     {{/allParams}}
 
     {{! query }}
-    const queryParameters: runtime.HTTPQuery = {};
+    const queryParameters: UrlQueryInput = {};
 
     {{#queryParams}}
     {{#isListContainer}}
@@ -81,26 +103,26 @@ export class {{classname}} extends runtime.BaseAPI {
     {{/queryParams}}
 
     {{! header }}
-    const headerParameters: runtime.HTTPHeaders = {};
+    const headerParameters: Headers = new Headers(headers);
 
     {{#bodyParam}}
     {{^consumes}}
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters.set('Content-Type', 'application/json');
     {{/consumes}}
     {{#consumes.0}}
-    headerParameters['Content-Type'] = '{{{mediaType}}}';
+    headerParameters.set('Content-Type', '{{{mediaType}}}');
     {{/consumes.0}}
     {{/bodyParam}}
 
     {{#headerParams}}
     {{#isListContainer}}
     if (requestParameters.{{paramName}}) {
-      headerParameters['{{baseName}}'] = requestParameters.{{paramName}}.join(runtime.COLLECTION_FORMATS["{{collectionFormat}}"]);
+      headerParameters.set('{{baseName}}', requestParameters.{{paramName}}.join(runtime.COLLECTION_FORMATS["{{collectionFormat}}"]));
     }
     {{/isListContainer}}
     {{^isListContainer}}
     if (requestParameters.{{paramName}} !== undefined && requestParameters.{{paramName}} !== null) {
-      headerParameters['{{baseName}}'] = String(requestParameters.{{paramName}});
+      headerParameters.set('{{baseName}}'], String(requestParameters.{{paramName}}));
     }
     {{/isListContainer}}
     {{/headerParams}}
@@ -109,17 +131,18 @@ export class {{classname}} extends runtime.BaseAPI {
 
     {{#isBasic}}
     {{#isBasicBasic}}
-    if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
-      headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+    if (username !== undefined || password !== undefined) {
+      headerParameters.set('Authorization', 'Basic ' + btoa(username + ":" + password);
     }
     {{/isBasicBasic}}
     {{#isBasicBearer}}
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = typeof token === 'function' ? token("{{name}}", [{{#scopes}}"{{{scope}}}"{{^-last}}, {{/-last}}{{/scopes}}]) : token;
+    if (accessToken) {
+      const tokenString = typeof accessToken === 'function'
+                      ? accessToken("{{name}}", [{{#scopes}}"{{{scope}}}"{{^-last}}, {{/-last}}{{/scopes}}])
+                      : accessToken;
 
       if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+        headerParameters.set('Authorization', `Bearer ${tokenString}`);
       }
     }
     {{/isBasicBearer}}
@@ -127,24 +150,24 @@ export class {{classname}} extends runtime.BaseAPI {
 
     {{#isApiKey}}
     {{#isKeyInHeader}}
-    if (this.configuration && this.configuration.apiKey) {
-      headerParameters["{{keyParamName}}"] = this.configuration.apiKey("{{keyParamName}}"); // {{name}} authentication
+    if (apiKey) {
+      headerParameters.set('{{keyParamName}}', apiKey("{{keyParamName}}")); // {{name}} authentication
     }
     {{/isKeyInHeader}}
     {{#isKeyInQuery}}
-    if (this.configuration && this.configuration.apiKey) {
-      queryParameters["{{keyParamName}}"] = this.configuration.apiKey("{{keyParamName}}"); // {{name}} authentication
+    if (apiKey) {
+      queryParameters["{{keyParamName}}"] = apiKey("{{keyParamName}}"); // {{name}} authentication
     }
     {{/isKeyInQuery}}
     {{/isApiKey}}
 
     {{#isOAuth}}
-    if (this.configuration && this.configuration.accessToken) {
+    if (accessToken) {
       // oauth required
-      if (typeof this.configuration.accessToken === 'function') {
-        headerParameters["Authorization"] = this.configuration.accessToken("{{name}}", [{{#scopes}}"{{{scope}}}"{{^-last}}, {{/-last}}{{/scopes}}]);
+      if (typeof accessToken === 'function') {
+        headerParameters.set('Authorization', accessToken("{{name}}", [{{#scopes}}"{{{scope}}}"{{^-last}}, {{/-last}}{{/scopes}}]));
       } else {
-        headerParameters["Authorization"] = this.configuration.accessToken;
+        headerParameters.set('Authorization', accessToken);
       }
     }
     {{/isOAuth}}
@@ -228,7 +251,7 @@ export class {{classname}} extends runtime.BaseAPI {
    * @throws {APIExceptionError}
    * @throws {APISerializeError}
    */
-  async {{nickname}}Response(response: Response): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+  export const {{nickname}}Response = (configuration: ResponseConfiguration = {}) => async (response: Response): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> => {
     if (response.status >= 200 && response.status < 300) {
       {{#returnType}}
       {{#isResponseFile}}
@@ -285,37 +308,37 @@ export class {{classname}} extends runtime.BaseAPI {
    * @throws {APIExceptionError}
    * @throws {APISerializeError}
    */
-  async {{nickname}}({{#allParams.0}}requestParameters: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Request{{/allParams.0}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
-    const { url, init } = this.{{nickname}}Request({{#allParams.0}}requestParameters{{/allParams.0}});
-    const response = await fetch(url, init);
-
-    return this.{{nickname}}Response(response);
+  export async function {{nickname}}({{#allParams.0}}requestParameters: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestParameters, {{/allParams.0}}configuration: OperationConfiguration = {}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    return pipe(
+      {{nickname}}Request(configuration),
+      fetchRequest(configuration),
+      {{nickname}}Response(configuration),
+    )({{#allParams.0}}requestParameters{{/allParams.0}});
   }
   {{/operation}}
-}
-{{/operations}}
 
-{{#hasEnums}}
-{{#operations}}
-{{#operation}}
-{{#allParams}}
-{{#isEnum}}
-/**
- * @export
- * @enum {string}
- */
-export enum {{operationIdCamelCase}}{{enumName}} {
-  {{#allowableValues}}
-  {{#enumVars}}
-  {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
-  {{/enumVars}}
-  {{/allowableValues}}
+  {{! enum NameEnum }}
+  {{#hasEnums}}
+  {{#operation}}
+  {{#allParams}}
+  {{#isEnum}}
+  /**
+   * @export
+   * @enum {string}
+   */
+  export enum {{operationIdCamelCase}}{{enumName}} {
+    {{#allowableValues}}
+    {{#enumVars}}
+    {{{name}}} = {{{value}}},
+    {{/enumVars}}
+    {{/allowableValues}}
+  }
+  {{/isEnum}}
+  {{/allParams}}
+  {{/operation}}
+  {{/hasEnums}}
 }
-{{/isEnum}}
-{{/allParams}}
-{{/operation}}
 {{/operations}}
-{{/hasEnums}}
 
 {{#operations}}
 {{#operation}}
