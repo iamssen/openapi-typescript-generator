@@ -6,8 +6,6 @@ const { execSync } = require('child_process');
 
 const pwd = path.resolve(__dirname, '..');
 const bin = path.resolve(pwd, '../bin');
-//const specs = path.resolve(pwd, 'src/specs');
-//const clients = path.resolve(pwd, 'src/clients');
 
 const names =
   process.argv.length > 2
@@ -21,14 +19,15 @@ const names =
         .filter((file) => !/^@/.test(file) && /.yaml$/.test(file))
         .map((file) => path.basename(file, '.yaml'));
 
-const generator =
-  //path.resolve(bin, 'ssen-typescript-openapi-generator.jar') +
-  //(os.platform() === 'win32' ? ';' : ':') +
-  path.resolve(bin, 'openapi-generator.jar');
+const generator = [
+  path.resolve(bin, 'openapi-generator.jar'),
+  os.platform() === 'win32' ? ';' : ':',
+  path.resolve(bin, 'ssen-typescript-openapi-generator.jar'),
+];
 
 const gen = (name) =>
   [
-    `java -cp ${generator}`,
+    `java -cp ${generator.join('')}`,
     `org.openapitools.codegen.OpenAPIGenerator`,
     `generate`,
     `-g typescript-fetch`,
