@@ -7,7 +7,7 @@
 # build codegen
 cd codegen || exit 1
 mvn package
-cp target/ssen-typescript-openapi-generator-*.jar ../bin/ssen-typescript-openapi-generator.jar
+cp target/ssen-typescript-openapi-generator-1.0.0.jar ../bin/ssen-typescript-openapi-generator.jar
 
 # build packages
 #cd ..
