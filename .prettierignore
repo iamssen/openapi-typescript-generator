@@ -2,3 +2,7 @@ node_modules
 fixtures
 out
 src/**/public
+codegen/
+gen/
+kitchen-sink/
+resources/
