@@ -5,16 +5,17 @@
   "license": "MIT",
   "repository": "github:rocket-hangar/openapi-typescript-generator",
   "workspaces": [
-    "cli",
     "source",
-    "out/packages/*"
+    "out/packages/*",
+    "test"
   ],
   "scripts": {
     "build": "bash scripts/build.sh",
     "build:packages": "yarn workspace source run build --out-dir $PWD/out/packages",
     "codegen:test": "cd codegen; mvn test",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\""
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "test": "yarn run build && yarn workspace test run test"
   },
   "lint-staged": {
     "**/src/{**/*,*}.{ts,tsx}": [
@@ -24,12 +25,12 @@
   },
   "devDependencies": {
     "@handbook/markdown-source-import": "^1.0.1",
-    "@ssen/eslint-config": "^1.3.0",
+    "@ssen/eslint-config": "^1.3.1",
     "@ssen/prettier-config": "^1.2.0",
-    "eslint": "^7.8.0",
+    "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.13",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
     "prettier": "^2.1.1"
   }
 }

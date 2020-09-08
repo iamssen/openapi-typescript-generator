@@ -20,15 +20,17 @@ import type {
   {{/imports}}
 } from '../models';
 {{/imports.0}}
+{{#hasModel}}
 import { typeSerializer } from '../models';
+{{/hasModel}}
 
 /* eslint-disable */
 
 {{#operations}}
-/**
- * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
- */
-export namespace {{classVarName}}Api {
+///**
+// * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
+// */
+//export namespace {{classVarName}}Api {
   {{! interface NameRequestParameters }}
   {{#operation}}
   {{#allParams.0}}
@@ -217,34 +219,46 @@ export namespace {{classVarName}}Api {
     if (requestParameters.{{paramName}} !== undefined) {
       formParams.append('{{baseName}}', requestParameters.{{paramName}} as any);
     }
-
     {{/isListContainer}}
     {{/formParams}}
     {{/hasFormParams}}
-    return this.createFetchParams({
-      path: `{{{path}}}`{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String(requestParameters.{{paramName}}))){{/pathParams}},
-      method: '{{httpMethod}}',
-      headers: headerParameters,
-      query: queryParameters,
-      {{#hasBodyParam}}
-      {{#bodyParam}}
-      {{#isContainer}}
-      body: requestParameters.{{paramName}}{{#isListContainer}}{{#items}}{{^isPrimitiveType}}?.map(typeSerializer.toJsonObject('{{datatype}}')){{/isPrimitiveType}}{{/items}}{{/isListContainer}},
-      {{/isContainer}}
-      {{^isContainer}}
-      {{^isPrimitiveType}}
-      body: typeSerializer.toJsonObject('{{dataType}}')(requestParameters.{{paramName}}),
-      {{/isPrimitiveType}}
-      {{#isPrimitiveType}}
-      body: requestParameters.{{paramName}} as any,
-      {{/isPrimitiveType}}
-      {{/isContainer}}
-      {{/bodyParam}}
-      {{/hasBodyParam}}
-      {{#hasFormParams}}
-      body: formParams,
-      {{/hasFormParams}}
-    });
+
+    let url: string = `${basePath.replace(/\/+$/, '')}{{{path}}}`{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String(requestParameters.{{paramName}}))){{/pathParams}};
+    if (queryParameters && Object.keys(queryParameters).length > 0) {
+      url += '?' + querystringStringify(queryParameters);
+    }
+
+    {{#hasBodyParam}}
+    {{#bodyParam}}
+    {{#isContainer}}
+    const body = JSON.stringify(requestParameters.{{paramName}}{{#isListContainer}}{{#items}}{{^isPrimitiveType}}?.map(typeSerializer.toJsonObject('{{datatype}}')){{/isPrimitiveType}}{{/items}}{{/isListContainer}});
+    {{/isContainer}}
+    {{^isContainer}}
+    {{^isPrimitiveType}}
+    const body = JSON.stringify(typeSerializer.toJsonObject('{{dataType}}')(requestParameters.{{paramName}}));
+    {{/isPrimitiveType}}
+    {{#isPrimitiveType}}
+    const body = requestParameters.{{paramName}} as any;
+    {{/isPrimitiveType}}
+    {{/isContainer}}
+    {{/bodyParam}}
+    {{/hasBodyParam}}
+    {{#hasFormParams}}
+    const body = formParams;
+    {{/hasFormParams}}
+    {{^hasBodyParam}}{{^hasFormParams}}
+    const body = undefined;
+    {{/hasFormParams}}{{/hasBodyParam}}
+
+    return {
+      input: url,
+      init: {
+        method: '{{httpMethod}}',
+        headers: headerParameters,
+        credentials,
+        body,
+      },
+    };
   }
 
   /**
@@ -337,7 +351,7 @@ export namespace {{classVarName}}Api {
   {{/allParams}}
   {{/operation}}
   {{/hasEnums}}
-}
+//}
 {{/operations}}
 
 {{#operations}}

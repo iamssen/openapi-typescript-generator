@@ -1,0 +1,11 @@
+{
+  "extends": "@rocket-scripts/web/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@rocket-scripts/openapi": [
+        "../../source/src/@rocket-scripts/openapi"
+      ]
+    }
+  }
+}
