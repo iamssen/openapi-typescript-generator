@@ -2,7 +2,7 @@
   "name": "reference",
   "version": "1.0.0",
   "scripts": {
-    "test": "TS_NODE_PROJECT=tsconfig.script.json node -r ts-node/register -r tsconfig-paths/register scripts/gen.ts && jest --colors"
+    "test": "cross-env TS_NODE_PROJECT=tsconfig.script.json node -r ts-node/register -r tsconfig-paths/register scripts/gen.ts && jest --colors"
   },
   "devDependencies": {
     "@rocket-scripts/web": "^1.0.6",
@@ -11,6 +11,7 @@
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.1",
     "@types/rimraf": "^3.0.0",
+    "cross-env": "^7.0.2",
     "jest": "^26.4.1",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
