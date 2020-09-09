@@ -22,10 +22,5 @@ yarn-error.log*
 coverage/
 out/
 test/storage/
-codegen/target/
-codegen/.classpath
-codegen/.factorypath
-codegen/.project
-codegen/.settings
-/gen
-/kitchen-sink
+/playgound/gen
+/playgound/kitchen-sink

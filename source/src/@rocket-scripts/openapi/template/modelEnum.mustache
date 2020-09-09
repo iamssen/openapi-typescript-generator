@@ -1,0 +1,19 @@
+import { EnumModel } from '@rocket-scripts/openapi';
+
+/**
+ * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
+ * @enum {string}
+ */
+export enum {{classname}} {
+  {{#allowableValues}}
+  {{#enumVars}}
+  {{{name}}} = {{{value}}},
+  {{/enumVars}}
+  {{/allowableValues}}
+}
+
+export const {{classname}}Model: EnumModel = {
+  classname: '{{classname}}',
+  type: 'enum',
+  enumVars: new Set([{{#allowableValues}}{{#enumVars}}{{{value}}}{{^-last}}, {{/-last}}{{/enumVars}}{{/allowableValues}}]),
+};

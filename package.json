@@ -7,11 +7,10 @@
   "workspaces": [
     "source",
     "out/packages/*",
-    "test"
+    "reference"
   ],
   "scripts": {
-    "build": "bash scripts/build.sh",
-    "build:packages": "yarn workspace source run build --out-dir $PWD/out/packages",
+    "build": "yarn workspace source run build --out-dir $PWD/out/packages",
     "codegen:test": "cd codegen; mvn test",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",

@@ -1,4 +1,12 @@
-'@rocket-scripts/*':
+'@rocket-scripts/openapi':
   version: 0.1.0
   tag: latest
-  module: esm
+  module: commonjs
+  packageJson:
+    bin:
+      'openapi-typescript-generator': ./bin/openapi-typescript-generator.js
+      'apigen': ./bin/openapi-typescript-generator.js
+    keywords:
+      - openapi
+      - openapi-generator
+      - typescript

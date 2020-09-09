@@ -1,0 +1,1 @@
+do not use inline oneOf and discriminator
