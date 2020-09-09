@@ -6,15 +6,14 @@
   "repository": "github:rocket-hangar/openapi-typescript-generator",
   "workspaces": [
     "source",
-    "out/packages/*",
     "reference"
   ],
   "scripts": {
-    "build": "yarn workspace source run build --out-dir $PWD/out/packages",
-    "codegen:test": "cd codegen; mvn test",
+    "build": "yarn workspace source run build",
+    "publish": "yarn workspace source run build && yarn workspace source run publish",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "test": "yarn run build && yarn workspace test run test"
+    "test": "yarn workspace reference run test"
   },
   "lint-staged": {
     "**/src/{**/*,*}.{ts,tsx}": [
