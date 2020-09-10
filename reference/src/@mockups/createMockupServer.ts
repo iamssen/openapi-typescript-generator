@@ -4,6 +4,8 @@ import body from 'koa-body';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import { getPortPromise } from 'portfinder';
+import multer from 'koa-multer';
+import path from 'path';
 
 export interface ServerResult {
   getBasePath: () => string;
@@ -21,12 +23,14 @@ export function createMockupServer(): ServerResult {
     const app = new Koa();
     const router = new Router();
 
-    app.use(body());
+    app.use(body({ multipart: true }));
     app.use(bodyParser());
+    //app.use(multer({dest: }));
 
     route(router);
 
-    app.use(router.middleware());
+    app.use(router.routes());
+    app.use(router.allowedMethods());
 
     await new Promise((resolve) => {
       server = app.listen(port, resolve);

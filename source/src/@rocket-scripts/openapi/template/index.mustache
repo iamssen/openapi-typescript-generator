@@ -1,7 +1,7 @@
 import * as pipe from 'p-pipe';
 
 export { pipe };
-export * from './runtime';
+// export * from './runtime';
 {{#apiInfo}}
 {{#apis.0}}
 export * from './apis';
@@ -10,3 +10,10 @@ export * from './apis';
 {{#models.0}}
 export * from './models';
 {{/models.0}}
+{{#hasServers}}
+export const servers = [
+{{#servers}}
+  { url: '{{url}}', description: '{{description}}' },
+{{/servers}}
+];
+{{/hasServers}}

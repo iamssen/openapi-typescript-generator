@@ -2,6 +2,9 @@ import { createMockupServer } from '@mockups/createMockupServer';
 import { timeout } from '@ssen/promised';
 import { DataTypes, defaultApi } from './client';
 
+//@ts-ignore
+global.FormData = FormData;
+
 describe('datatypes', () => {
   const server = createMockupServer();
 
@@ -20,8 +23,9 @@ describe('datatypes', () => {
 
   beforeAll(async () => {
     await server.start((router) => {
-      router.post('/', async (ctx) => {
+      router.post('/object', async (ctx) => {
         // Assert
+        expect(ctx.request.body instanceof Object).toBeTruthy();
         expect(ctx.request.body.int32).toBe(data.int32);
         expect(ctx.request.body.int64).toBe(data.int64);
         expect(ctx.request.body.numberFloat).toBe(data.numberFloat);
@@ -38,6 +42,14 @@ describe('datatypes', () => {
         await timeout(100);
         ctx.body = data;
       });
+
+      router.post('/string', async (ctx) => {
+        // Assert
+        expect(typeof ctx.request.body).toBe('string');
+        expect(ctx.request.body).toBe('hello world');
+
+        ctx.body = 'echo ' + ctx.request.body;
+      });
     });
   });
 
@@ -45,9 +57,25 @@ describe('datatypes', () => {
     await server.close();
   });
 
-  test('post /', async () => {
+  test('post /string', async () => {
     // Act
-    const result = await defaultApi.rootPost(
+    const result = await defaultApi.stringPost(
+      {
+        body: 'hello world',
+      },
+      {
+        basePath: server.getBasePath(),
+      },
+    );
+
+    // Assert
+    expect(typeof result).toBe('string');
+    expect(result).toBe('echo hello world');
+  });
+
+  test('post /object', async () => {
+    // Act
+    const result = await defaultApi.objectPost(
       { dataTypes: data },
       {
         basePath: server.getBasePath(),

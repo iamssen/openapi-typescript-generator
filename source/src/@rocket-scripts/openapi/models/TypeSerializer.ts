@@ -303,8 +303,12 @@ export class TypeSerializer {
   toValueObject = (type: string, ignoreDiscriminator: boolean = false) => (
     jsonObject: any,
   ): any => {
-    if (type === 'string' || type === 'number' || type === 'boolean') {
+    if (type === 'string') {
       return jsonObject;
+    } else if (type === 'number') {
+      return +jsonObject;
+    } else if (type === 'boolean') {
+      return jsonObject === true || jsonObject === 'true';
     }
 
     const model: Model | undefined = this.models[type];
@@ -346,8 +350,12 @@ export class TypeSerializer {
   };
 
   toJsonObject = (type: string) => (valueObject: any): any => {
-    if (type === 'string' || type === 'number' || type === 'boolean') {
+    if (type === 'string') {
       return valueObject;
+    } else if (type === 'number') {
+      return +valueObject;
+    } else if (type === 'boolean') {
+      return valueObject === true || valueObject === 'true';
     }
 
     const model: Model | undefined = this.models[type];

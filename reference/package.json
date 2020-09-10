@@ -14,6 +14,8 @@
     "@types/prettier": "^2.1.0",
     "@types/rimraf": "^3.0.0",
     "cross-env": "^7.0.2",
+    "file-type": "^15.0.0",
+    "form-data": "^3.0.0",
     "jest": "^26.4.1",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",

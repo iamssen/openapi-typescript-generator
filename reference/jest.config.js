@@ -3,6 +3,8 @@ const path = require('path');
 
 module.exports = {
   ...jestPreset,
+  
+  testTimeout: 50000,
 
   moduleNameMapper: {
     ...jestPreset.moduleNameMapper,

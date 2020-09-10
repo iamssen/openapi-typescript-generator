@@ -1,7 +1,10 @@
 {{#apiInfo}}
 {{#apis}}
 {{#operations}}
-export * as {{classVarName}}Api from './{{ classFilename }}';
+import * as {{classVarName}}Api from './{{ classFilename }}';
+{{/operations}}
+{{#operations}}
+export { {{classVarName}}Api };
 {{/operations}}
 {{/apis}}
 {{/apiInfo}}

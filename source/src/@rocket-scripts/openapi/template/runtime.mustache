@@ -1,2 +1,18 @@
 /* eslint-disable */
 {{>licenseInfo}}
+
+import { TypeSerializer } from '@rocket-scripts/openapi';
+
+{{#models}}
+{{#model}}
+import { {{classname}}Model } from './models/{{{ classFilename }}}';
+{{/model}}
+{{/models}}
+
+export const typeSerializer = new TypeSerializer({
+  {{#models}}
+  {{#model}}
+  '{{classname}}': {{classname}}Model,
+  {{/model}}
+  {{/models}}
+});

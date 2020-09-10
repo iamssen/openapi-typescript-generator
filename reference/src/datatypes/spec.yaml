@@ -1,9 +1,28 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Data Types
+  title: Data Types Title
+  description: Data Types Description
+servers:
+  - url: http://localhost:8000
+    description: Test server
 paths:
-  /:
+  /string:
+    post:
+      requestBody:
+        required: true
+        content:
+          'text/plain':
+            schema:
+              type: string
+      responses:
+        200:
+          description: plain text
+          content:
+            'text/plain':
+              schema:
+                type: string
+  /object:
     post:
       requestBody:
         required: true
@@ -12,7 +31,7 @@ paths:
             schema:
               '$ref': '#/components/schemas/DataTypes'
       responses:
-        '200':
+        200:
           description: successful operation
           content:
             'application/json':

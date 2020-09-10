@@ -14,8 +14,9 @@ const names: string[] =
         )
     : fs
         .readdirSync(path.resolve(pwd, 'src'))
-        .filter((file) => !/^@/.test(file) && /.yaml$/.test(file))
-        .map((file) => path.basename(file, '.yaml'));
+        .filter((file) =>
+          fs.existsSync(path.resolve(pwd, 'src', file, `spec.yaml`)),
+        );
 
 (async () => {
   for (const name of names) {

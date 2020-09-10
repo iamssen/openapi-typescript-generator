@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Response Title
+  description: Response Description
+servers:
+  - url: 'http://localhost:8000'
+    description: Test server
+paths:
+  /r200:
+    get:
+      responses:
+        200:
+          description: ok
+          content:
+            text/plain:
+              schema:
+                type: string
+  /r201:
+    get:
+      responses:
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/R201'
+  /r400:
+    get:
+      responses:
+        200:
+          description: ok
+          content:
+            text/plain:
+              schema:
+                type: string
+        400:
+          description: fail
+          content:
+            text/plain:
+              schema:
+                type: string
+  /r401:
+    get:
+      responses:
+        400:
+          description: fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/R401'
+components:
+  schemas:
+    R201:
+      type: object
+      properties:
+        a:
+          type: string
+        b:
+          type: number
+        c:
+          $ref: '#/components/schemas/SubType'
+    R401:
+      type: object
+      properties:
+        c:
+          type: string
+        d:
+          type: number
+        e:
+          $ref: '#/components/schemas/SubType'
+    SubType:
+      type: object
+      properties:
+        x:
+          type: string

@@ -2,6 +2,8 @@
 apis/DefaultApi.ts
 apis/index.ts
 index.ts
-models/InlineResponse200.ts
+models/R201.ts
+models/R401.ts
+models/SubType.ts
 models/index.ts
 runtime.ts
