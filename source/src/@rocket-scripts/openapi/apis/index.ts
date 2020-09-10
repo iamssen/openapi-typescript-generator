@@ -1,6 +1,7 @@
 import { FetchConfiguration } from './fetchRequest';
 import { QuerystringStringify } from './querystring';
 
+export * from './collectionFormats';
 export * from './fetchRequest';
 export * from './querystring';
 

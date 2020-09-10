@@ -5,6 +5,7 @@ import { IncomingMessage } from 'http';
 import { get } from 'https';
 import os from 'os';
 import path from 'path';
+import prettier from 'prettier';
 
 const openapiVersion: string = '5.0.0-beta2';
 
@@ -83,7 +84,38 @@ export async function generate(
   ].join(' ');
 
   if (emit) {
-    spawn(command, { stdio: 'inherit', shell: true });
+    const proc = spawn(
+      process.env.TS_POST_PROCESS_FILE
+        ? command + '--enable-post-process-file'
+        : command,
+      {
+        stdio: 'inherit',
+        shell: true,
+      },
+    );
+
+    proc.once('exit', async (code: number | null) => {
+      if (!code && !process.env.TS_POST_PROCESS_FILE) {
+        const configFile: string | null = await prettier.resolveConfigFile(
+          output,
+        );
+
+        if (configFile) {
+          try {
+            const binPrettier: string = require.resolve(
+              'prettier/bin-prettier.js',
+            );
+            spawn(
+              `${process.execPath} ${binPrettier} --config "${configFile}" --write "${output}/**/*.ts"`,
+              {
+                stdio: 'inherit',
+                shell: true,
+              },
+            );
+          } catch {}
+        }
+      }
+    });
   } else {
     console.log(command);
   }

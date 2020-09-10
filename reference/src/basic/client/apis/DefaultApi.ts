@@ -16,6 +16,7 @@ import type {
 } from '@rocket-scripts/openapi';
 import {
   pipe,
+  collectionFormats,
   querystring,
   fetchRequest,
   APIRequestError,
@@ -26,12 +27,9 @@ import { typeSerializer } from '../models';
 
 /* eslint-disable */
 
-///**
-// *
-// */
-//export namespace defaultApi {
-
 /**
+ * @throws {APIRequestError} throw when the request is not correct
+ * @throws {APISerializeError} throw when fail serialize data (include request and response)
  */
 export const sampleGetRequest = ({
   basePath = '',
@@ -66,8 +64,9 @@ export const sampleGetRequest = ({
 };
 
 /**
- * @throws {APIExceptionError}
- * @throws {APISerializeError}
+ * @throws {APIExceptionError} throw when response is out of 2xx
+ * @throws {Response} throw when the response.status is not accepted (fallback throwing)
+ * @throws {APISerializeError} throw when fail serialize data (include request and response)
  */
 export const sampleGetResponse = (
   configuration: ResponseConfiguration = {},
@@ -85,8 +84,10 @@ export const sampleGetResponse = (
 };
 
 /**
- * @throws {APIExceptionError}
- * @throws {APISerializeError}
+ * @throws {APIRequestError} throw when the request is not correct
+ * @throws {APIExceptionError} throw when response is out of 2xx
+ * @throws {Response} throw when the response.status is not accepted (fallback throwing)
+ * @throws {APISerializeError} throw when fail serialize data (include request and response)
  */
 export async function sampleGet(
   configuration: OperationConfiguration = {},
@@ -97,16 +98,3 @@ export async function sampleGet(
     sampleGetResponse(configuration),
   )();
 }
-
-//}
-
-// sampleGet:
-//
-//    code: 200, is1xx: false, is2xx: true, is3xx: false, is4xx: false, is5xx: false
-//    message: successful operation
-//    dataType: InlineResponse200, baseType: InlineResponse200, containerType: , simpleType: true
-//    isAnyType: false, isBinary: false, isBoolean: false, isByteArray: false, isDate: false,
-//    isDateTime: false, isDefault: false, isDouble: false, isEmail: false, isFile: false, isFloat: false,
-//    isFreeFormObject: false, isInteger: false, isListContainer: false, isLong: false, isMapContainer: false,
-//    isModel: true, isNumber: false, isNumeric: false, isString: false, isUuid: false
-//
