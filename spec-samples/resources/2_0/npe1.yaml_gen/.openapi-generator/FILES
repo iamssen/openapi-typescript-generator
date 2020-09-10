@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Options.ts
+models/Resource.ts
+models/ResourceRequest.ts
+models/ResourceRequestAllOf.ts
+models/index.ts
+runtime.ts

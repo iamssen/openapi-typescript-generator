@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+apis/ExamplesApi.ts
+apis/index.ts
+index.ts
+models/Input.ts
+models/index.ts
+runtime.ts

@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+apis/MessagingApi.ts
+apis/index.ts
+index.ts
+models/MessageEventCore.ts
+models/MessageEventCoreWithTimeListEntries.ts
+models/MessageEventCoreWithTimeListEntriesAllOf.ts
+models/NewMessageEventCoreNoOwnProps.ts
+models/TimeListEntry.ts
+models/index.ts
+runtime.ts

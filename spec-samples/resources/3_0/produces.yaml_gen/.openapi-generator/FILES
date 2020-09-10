@@ -1,0 +1,8 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/InlineResponse200.ts
+models/LocationData.ts
+models/index.ts
+runtime.ts

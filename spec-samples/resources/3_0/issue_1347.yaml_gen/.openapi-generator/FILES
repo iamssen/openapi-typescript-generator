@@ -1,0 +1,5 @@
+.openapi-generator-ignore
+apis/DocumentApi.ts
+apis/index.ts
+index.ts
+runtime.ts

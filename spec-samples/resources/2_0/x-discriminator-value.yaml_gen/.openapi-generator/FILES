@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/BaseObj.ts
+models/DailySubObj.ts
+models/DailySubObjAllOf.ts
+models/SubObj.ts
+models/SubObjAllOf.ts
+models/SubObjType.ts
+models/index.ts
+runtime.ts

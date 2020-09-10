@@ -2,4 +2,4 @@ node_modules
 fixtures
 out
 src/**/public
-playgound/
+spec-samples/

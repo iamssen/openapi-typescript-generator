@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+apis/FakeApi.ts
+apis/index.ts
+index.ts
+models/ObjectModelWithRefs.ts
+models/index.ts
+runtime.ts

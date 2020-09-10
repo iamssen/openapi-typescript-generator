@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Apple.ts
+models/Banana.ts
+models/Fruit.ts
+models/index.ts
+runtime.ts

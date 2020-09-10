@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ApiError.ts
+models/Command.ts
+models/RealCommand.ts
+models/index.ts
+runtime.ts

@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Adult.ts
+models/AdultAllOf.ts
+models/Child.ts
+models/ChildAllOf.ts
+models/MapOnlyWithProperties.ts
+models/Person.ts
+models/index.ts
+runtime.ts

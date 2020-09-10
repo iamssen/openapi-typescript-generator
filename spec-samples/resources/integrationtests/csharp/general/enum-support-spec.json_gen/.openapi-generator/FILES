@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/MyClassWithInvalidRequiredEnumUsageOnRef.ts
+models/MyClassWithOptionalEnum.ts
+models/MyClassWithOptionalInlineEnum.ts
+models/MyClassWithRequiredInlineEnum.ts
+models/WeekDays.ts
+models/index.ts
+runtime.ts

@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/InlineObject.ts
+models/MultipartRelatedRequest.ts
+models/MultipartRequest.ts
+models/MultipartRequestObjectField.ts
+models/index.ts
+runtime.ts

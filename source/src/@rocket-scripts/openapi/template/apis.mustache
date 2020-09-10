@@ -121,7 +121,7 @@ export const {{nickname}}Request = ({
   {{/isListContainer}}
   {{^isListContainer}}
   if (requestParameters.{{paramName}} !== undefined && requestParameters.{{paramName}} !== null) {
-    headerParameters.set('{{baseName}}'], String(requestParameters.{{paramName}}));
+    headerParameters.set('{{baseName}}', String(requestParameters.{{paramName}}));
   }
   {{/isListContainer}}
   {{/headerParams}}
@@ -131,7 +131,7 @@ export const {{nickname}}Request = ({
   {{#isBasic}}
   {{#isBasicBasic}}
   if (username !== undefined || password !== undefined) {
-    headerParameters.set('Authorization', 'Basic ' + btoa(username + ":" + password);
+    headerParameters.set('Authorization', 'Basic ' + btoa(username + ":" + password));
   }
   {{/isBasicBasic}}
   {{#isBasicBearer}}

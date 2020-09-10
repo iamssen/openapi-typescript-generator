@@ -1,0 +1,10 @@
+import * as accountApi from './AccountApi';
+export { accountApi };
+import * as wordApi from './WordApi';
+export { wordApi };
+import * as wordListApi from './WordListApi';
+export { wordListApi };
+import * as wordListsApi from './WordListsApi';
+export { wordListsApi };
+import * as wordsApi from './WordsApi';
+export { wordsApi };

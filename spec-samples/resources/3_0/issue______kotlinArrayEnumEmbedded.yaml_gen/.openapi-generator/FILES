@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Colors.ts
+models/EmbeddedEnumArray.ts
+models/NoEmbeddedEnumArray.ts
+models/SimpleColorContainer.ts
+models/index.ts
+runtime.ts

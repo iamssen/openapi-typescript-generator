@@ -1,0 +1,13 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ANullableContainer.ts
+models/AllOfObject.ts
+models/BaseAllOf.ts
+models/GetYamlResponse.ts
+models/InlineObject.ts
+models/ObjectOfObjects.ts
+models/ObjectOfObjectsInner.ts
+models/index.ts
+runtime.ts

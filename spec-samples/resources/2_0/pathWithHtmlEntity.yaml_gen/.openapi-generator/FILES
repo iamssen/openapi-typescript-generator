@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Category.ts
+models/MapTest.ts
+models/Pet.ts
+models/Tag.ts
+models/index.ts
+runtime.ts

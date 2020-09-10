@@ -6,7 +6,8 @@
   "repository": "github:rocket-hangar/openapi-typescript-generator",
   "workspaces": [
     "source",
-    "reference"
+    "reference",
+    "spec-files"
   ],
   "scripts": {
     "build": "yarn workspace source run build",

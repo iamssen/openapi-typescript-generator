@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ModelA.ts
+models/ModelB.ts
+models/ModelC.ts
+models/ModelCAllOf.ts
+models/index.ts
+runtime.ts

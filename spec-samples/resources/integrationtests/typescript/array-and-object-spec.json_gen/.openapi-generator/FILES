@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+apis/ProjectApi.ts
+apis/index.ts
+index.ts
+models/ProjectEntity.ts
+models/ProjectEntityLocation.ts
+models/ProjectList.ts
+models/index.ts
+runtime.ts

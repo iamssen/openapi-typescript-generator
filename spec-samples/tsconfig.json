@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "ES2018",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@rocket-scripts/openapi": [
+        "../source/src/@rocket-scripts/openapi"
+      ],
+      "@rocket-scripts/openapi/*": [
+        "../source/src/@rocket-scripts/openapi/*"
+      ]
+    }
+  }
+}

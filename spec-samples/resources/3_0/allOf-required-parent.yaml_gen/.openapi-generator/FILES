@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Person.ts
+models/PersonAllOf.ts
+models/PersonForCreation.ts
+models/PersonForUpdate.ts
+models/index.ts
+runtime.ts

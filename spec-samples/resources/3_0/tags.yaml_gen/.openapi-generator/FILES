@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/Group4Api.ts
+apis/Group5Api.ts
+apis/Tag1Api.ts
+apis/Tag2Api.ts
+apis/index.ts
+index.ts
+models/SomeObj.ts
+models/index.ts
+runtime.ts

@@ -1,0 +1,8 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ExternalEnum.ts
+models/ObjectWithEnums.ts
+models/index.ts
+runtime.ts

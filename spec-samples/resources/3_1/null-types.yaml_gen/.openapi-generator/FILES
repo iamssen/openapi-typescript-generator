@@ -1,0 +1,14 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Adult.ts
+models/AdultAllOf.ts
+models/Child.ts
+models/ChildAllOf.ts
+models/NullableAddress.ts
+models/Person.ts
+models/PersonAddress.ts
+models/PersonSkills.ts
+models/index.ts
+runtime.ts

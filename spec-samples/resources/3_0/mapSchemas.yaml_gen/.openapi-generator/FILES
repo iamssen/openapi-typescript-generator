@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ComplexModel.ts
+models/ExampleModel.ts
+models/FreeformObjectTypes.ts
+models/ModelWithAdditionalProperties.ts
+models/index.ts
+runtime.ts

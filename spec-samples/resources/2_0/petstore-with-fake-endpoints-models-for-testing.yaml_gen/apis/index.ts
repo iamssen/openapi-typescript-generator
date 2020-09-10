@@ -1,0 +1,12 @@
+import * as anotherFakeApi from './AnotherFakeApi';
+export { anotherFakeApi };
+import * as fakeApi from './FakeApi';
+export { fakeApi };
+import * as fakeClassnameTags123Api from './FakeClassnameTags123Api';
+export { fakeClassnameTags123Api };
+import * as petApi from './PetApi';
+export { petApi };
+import * as storeApi from './StoreApi';
+export { storeApi };
+import * as userApi from './UserApi';
+export { userApi };

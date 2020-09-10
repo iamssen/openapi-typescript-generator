@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ChildSchema.ts
+models/ChildSchemaAllOf.ts
+models/MySchemaNameCharacters.ts
+models/MySchemaNameCharactersAllOf.ts
+models/Parent.ts
+models/index.ts
+runtime.ts

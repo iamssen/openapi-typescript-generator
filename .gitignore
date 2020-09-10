@@ -22,5 +22,5 @@ yarn-error.log*
 coverage/
 out/
 test/storage/
-/playgound/gen
-/playgound/kitchen-sink
+/spec-samples/gen
+/spec-samples/kitchen-sink

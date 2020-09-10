@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/MultipartApi.ts
+apis/index.ts
+index.ts
+models/InlineObject.ts
+models/InlineObject1.ts
+models/InlineObject2.ts
+models/MultipartMixedMarker.ts
+models/index.ts
+runtime.ts
