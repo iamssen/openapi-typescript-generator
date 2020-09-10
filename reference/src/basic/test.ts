@@ -1,11 +1,11 @@
-import { jsonMockupServer, ServerResult } from '@mockups/jsonMockupServer';
+import { createMockupServer } from '@mockups/createMockupServer';
 import { defaultApi } from './client';
 
 describe('basic', () => {
-  let server: ServerResult;
+  const server = createMockupServer();
 
   beforeAll(async () => {
-    server = await jsonMockupServer((router) => {
+    await server.start((router) => {
       router.get('/sample', async (ctx) => {
         ctx.body = {
           hello: 'world',
@@ -20,7 +20,9 @@ describe('basic', () => {
 
   test('get /sample', async () => {
     // Act
-    const result = await defaultApi.sampleGet({ basePath: server.basePath });
+    const result = await defaultApi.sampleGet({
+      basePath: server.getBasePath(),
+    });
 
     // Assert
     expect(result).toMatchObject({ hello: 'world' });
