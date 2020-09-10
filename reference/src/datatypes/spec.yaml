@@ -17,27 +17,46 @@ paths:
               type: string
       responses:
         200:
-          description: plain text
-          content:
-            'text/plain':
-              schema:
-                type: string
+          $ref: '#/components/responses/PlainTextResponse'
   /object:
     post:
       requestBody:
         required: true
         content:
-          'application/json':
+          application/json:
             schema:
-              '$ref': '#/components/schemas/DataTypes'
+              $ref: '#/components/schemas/DataTypes'
       responses:
         200:
-          description: successful operation
-          content:
-            'application/json':
-              schema:
-                '$ref': '#/components/schemas/DataTypes'
+          $ref: '#/components/responses/JsonResponse'
 components:
+#  FIXME do not use requestBodies it's not supported yet
+#  requestBodies:
+#    TextPlainRequestBody:
+#      required: true
+#      content:
+#        'text/plain':
+#          schema:
+#            type: string
+#    JsonRequestBody:
+#      required: true
+#      content:
+#        application/json:
+#          schema:
+#            $ref: '#/components/schemas/DataTypes'
+  responses:
+    PlainTextResponse:
+      description: plain text
+      content:
+        text/plain:
+          schema:
+            type: string
+    JsonResponse:
+      description: successful operation
+      content:
+        'application/json':
+          schema:
+            '$ref': '#/components/schemas/DataTypes'
   schemas:
     DataTypes:
       type: object
