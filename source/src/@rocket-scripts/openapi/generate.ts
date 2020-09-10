@@ -10,43 +10,46 @@ import prettier from 'prettier';
 const openapiVersion: string = '5.0.0-beta2';
 
 async function download(url: string, file: string) {
-  const target: WriteStream = fs.createWriteStream(file);
+  return new Promise((resolve) => {
+    const target: WriteStream = fs.createWriteStream(file);
 
-  const bar = new SingleBar({}, Presets.shades_classic);
+    const bar = new SingleBar({}, Presets.shades_classic);
 
-  get(url, (response: IncomingMessage) => {
-    const contentLength: string | undefined =
-      response.headers['content-length'];
+    get(url, (response: IncomingMessage) => {
+      const contentLength: string | undefined =
+        response.headers['content-length'];
 
-    if (!contentLength) {
-      throw new Error(`Undefined Content-Length`);
-    }
+      if (!contentLength) {
+        throw new Error(`Undefined Content-Length`);
+      }
 
-    const total: number = +contentLength;
+      const total: number = +contentLength;
 
-    if (isNaN(total)) {
-      throw new Error(`Content-Length is not a number`);
-    }
+      if (isNaN(total)) {
+        throw new Error(`Content-Length is not a number`);
+      }
 
-    let current: number = 0;
+      let current: number = 0;
 
-    response.pipe(target);
+      response.pipe(target);
 
-    response.on('data', (chunk) => {
-      current += chunk.length;
-      bar.update(current);
+      response.on('data', (chunk) => {
+        current += chunk.length;
+        bar.update(current);
+      });
+
+      response.on('error', (error) => {
+        bar.stop();
+        console.error(error);
+      });
+
+      response.on('end', () => {
+        bar.stop();
+        setTimeout(resolve, 1000);
+      });
+
+      bar.start(total, current);
     });
-
-    response.on('error', (error) => {
-      bar.stop();
-      console.error(error);
-    });
-
-    response.on('end', () => {
-      bar.stop();
-    });
-
-    bar.start(total, current);
   });
 }
 
