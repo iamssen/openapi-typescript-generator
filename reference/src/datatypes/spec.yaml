@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Data Types
+paths:
+  /:
+    post:
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              '$ref': '#/components/schemas/DataTypes'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            'application/json':
+              schema:
+                '$ref': '#/components/schemas/DataTypes'
+components:
+  schemas:
+    DataTypes:
+      type: object
+      description: primitive data types
+      properties:
+        int32:
+          description: int32 -> number
+          type: integer
+          format: int32
+        int64:
+          description: int64 -> number
+          type: integer
+          format: int64
+        numberFloat:
+          description: float -> number
+          type: number
+          format: float
+        numberDouble:
+          description: double -> number
+          type: number
+          format: double
+        bool:
+          description: boolean -> boolean
+          type: boolean
+        str:
+          description: string -> string
+          type: string
+        strByte:
+          description: string -> string (base64 encoded)
+          type: string
+          format: byte
+#        FIXME do not use inside of a json object
+#        strBinary:
+#          description: binary -> Blob
+#          type: string
+#          format: binary
+        date:
+          description: date -> Date
+          type: string
+          format: date
+        datetime:
+          description: date-time -> Date
+          type: string
+          format: date-time
+        password:
+          description: password -> string
+          type: string
+          format: password
+      required:
+        - int32
+        - int64
+        - numberFloat
+        - numberDouble
+        - bool
+        - str
+        - strByte
+        - strBinary
+        - date
+        - datetime
+        - password

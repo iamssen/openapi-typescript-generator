@@ -1,6 +1,7 @@
 import { Server } from 'http';
 import Koa from 'koa';
-import Body from 'koa-body';
+import body from 'koa-body';
+import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import { getPortPromise } from 'portfinder';
 
@@ -20,7 +21,8 @@ export function createMockupServer(): ServerResult {
     const app = new Koa();
     const router = new Router();
 
-    app.use(Body());
+    app.use(body());
+    app.use(bodyParser());
 
     route(router);
 
