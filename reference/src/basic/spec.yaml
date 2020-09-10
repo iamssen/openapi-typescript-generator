@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Basic
+paths:
+  /some:
+    get:
+      responses:
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SomeData'
+        400:
+          description: fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SomeException'
+components:
+  schemas:
+    SomeData:
+      type: object
+      properties:
+        hello:
+          type: string
+    SomeException:
+      type: object
+      properties:
+        errorDetail:
+          type: string

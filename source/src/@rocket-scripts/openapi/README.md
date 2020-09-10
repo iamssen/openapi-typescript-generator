@@ -21,7 +21,7 @@ Generate TypeScript Clients
 See detail: <https://github.com/rocket-hangar/openapi-typescript-generator/tree/master/reference/src/basic>
 
 ```ts
-import { APIExceptionError } from '@rocket-scripts/openapi';
+import { APIExceptionError } from '@rocket-scripts/openapi'; 
 import { defaultApi, SomeData, SomeException } from './client';
 
 try {
