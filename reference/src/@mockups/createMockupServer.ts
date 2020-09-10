@@ -4,8 +4,6 @@ import body from 'koa-body';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import { getPortPromise } from 'portfinder';
-import multer from 'koa-multer';
-import path from 'path';
 
 export interface ServerResult {
   getBasePath: () => string;
@@ -18,7 +16,10 @@ export function createMockupServer(): ServerResult {
   let port: number;
 
   async function start(route: (router: Router) => void) {
-    port = await getPortPromise();
+    port = await getPortPromise({
+      startPort: 8000 + Math.floor(Math.random() * 1000),
+      stopPort: 50000,
+    });
 
     const app = new Koa();
     const router = new Router();
