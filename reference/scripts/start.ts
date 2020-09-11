@@ -15,6 +15,10 @@ import path from 'path';
             __dirname,
             '../../source/out/packages/rocket-scripts__openapi',
           ),
+          '@rocket-scripts/mockup': path.resolve(
+            __dirname,
+            '../../source/out/packages/rocket-scripts__mockup',
+          ),
         },
       },
     },

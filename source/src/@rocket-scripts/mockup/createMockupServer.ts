@@ -7,7 +7,7 @@ import { getPortPromise } from 'portfinder';
 
 export interface ServerResult {
   getBasePath: () => string;
-  start: (route: (router: Router) => void) => Promise<void>;
+  start: (route: (router: Router, app: Koa) => void) => Promise<void>;
   close: () => Promise<void>;
 }
 
@@ -15,7 +15,7 @@ export function createMockupServer(): ServerResult {
   let server: Server;
   let port: number;
 
-  async function start(route: (router: Router) => void) {
+  async function start(route: (router: Router, app: Koa) => void) {
     port = await getPortPromise({
       startPort: 8000 + Math.floor(Math.random() * 1000),
       stopPort: 50000,
@@ -28,7 +28,7 @@ export function createMockupServer(): ServerResult {
     app.use(bodyParser());
     //app.use(multer({dest: }));
 
-    route(router);
+    route(router, app);
 
     app.use(router.routes());
     app.use(router.allowedMethods());

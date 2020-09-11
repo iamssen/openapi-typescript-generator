@@ -1,4 +1,4 @@
-import { createMockupServer } from '@mockups/createMockupServer';
+import { createMockupServer } from '@rocket-scripts/mockup';
 import { APIExceptionError } from '@rocket-scripts/openapi';
 import { defaultApi, SomeException } from './client';
 

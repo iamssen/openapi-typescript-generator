@@ -1,4 +1,4 @@
-import { createMockupServer } from '@mockups/createMockupServer';
+import { createMockupServer } from '@rocket-scripts/mockup';
 import { timeout } from '@ssen/promised';
 import { DataTypes, defaultApi } from './client';
 

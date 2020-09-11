@@ -14,6 +14,12 @@
       ],
       "@rocket-scripts/openapi/*": [
         "../../source/src/@rocket-scripts/openapi/*"
+      ],
+      "@rocket-scripts/mockup": [
+        "../../source/src/@rocket-scripts/mockup"
+      ],
+      "@rocket-scripts/mockup/*": [
+        "../../source/src/@rocket-scripts/mockup/*"
       ]
     }
   },

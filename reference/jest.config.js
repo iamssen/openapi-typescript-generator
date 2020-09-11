@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   ...jestPreset,
-  
+
   testTimeout: 50000,
 
   moduleNameMapper: {
@@ -11,6 +11,10 @@ module.exports = {
     '@rocket-scripts/openapi': path.join(
       __dirname,
       '../source/src/@rocket-scripts/openapi',
+    ),
+    '@rocket-scripts/mockup': path.join(
+      __dirname,
+      '../source/src/@rocket-scripts/mockup',
     ),
   },
 };
