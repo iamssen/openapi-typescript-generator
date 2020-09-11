@@ -1,0 +1,154 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: JSON CRUD API
+  description: JSON CRUD API Description
+servers:
+  - url: 'http://localhost:8000'
+    description: Test server
+paths:
+  /docs/new:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDoc'
+      responses:
+        201:
+          $ref: '#/components/responses/Doc'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  /docs/{docId}:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/DocId'
+      responses:
+        200:
+          $ref: '#/components/responses/Doc'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+    put:
+      parameters:
+        - $ref: '#/components/parameters/DocId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doc'
+      responses:
+        201:
+          $ref: '#/components/responses/Doc'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+    delete:
+      parameters:
+        - $ref: '#/components/parameters/DocId'
+      responses:
+        200:
+          $ref: '#/components/responses/OK'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+components:
+  parameters:
+    DocId:
+      in: path
+      name: docId
+      description: /docs/{docId}
+      schema:
+        type: number
+      required: true
+  responses:
+    Doc:
+      description: 200 ok with doc content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Doc'
+    OK:
+      description: 200 ok
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Success'
+    NotFound:
+      description: 404 not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Exception'
+    Unauthorized:
+      description: 401 unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Exception'
+    BadRequest:
+      description: 400 bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Exception'
+  schemas:
+    NewDoc:
+      type: object
+      description: new doc object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+      required:
+        - title
+        - content
+    Doc:
+      description: doc object
+      allOf:
+        - $ref: '#/components/schemas/NewDoc'
+        - type: object
+          properties:
+            docId:
+              type: number
+          required:
+            - docId
+    Success:
+      type: object
+      description: success object
+      properties:
+        success:
+          $ref: '#/components/schemas/Detail'
+      required:
+        - success
+    Exception:
+      type: object
+      description: error exception object
+      properties:
+        error:
+          $ref: '#/components/schemas/Detail'
+      required:
+        - error
+    Detail:
+      type: object
+      description: description detail reason
+      properties:
+        detail:
+          type: string
+      required:
+        - detail
