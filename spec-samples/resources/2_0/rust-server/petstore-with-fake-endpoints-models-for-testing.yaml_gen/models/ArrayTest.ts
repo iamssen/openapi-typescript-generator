@@ -51,166 +51,166 @@ export const ArrayTestModel: GenericModel = {
   type: 'generic',
   parent: undefined,
   vars: {
-    arrayOfString: {
-      name: 'arrayOfString',
-      baseName: 'array_of_string',
-      datatype: 'Array&lt;string&gt;',
-      required: false,
-      itemsDataType: 'string',
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: true,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: true,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    arrayArrayOfInteger: {
-      name: 'arrayArrayOfInteger',
-      baseName: 'array_array_of_integer',
-      datatype: 'Array&lt;Array&lt;number&gt;&gt;',
-      required: false,
-      itemsDataType: 'Array&lt;number&gt;',
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: true,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: true,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    arrayArrayOfModel: {
-      name: 'arrayArrayOfModel',
-      baseName: 'array_array_of_model',
-      datatype: 'Array&lt;Array&lt;ReadOnlyFirst&gt;&gt;',
-      required: false,
-      itemsDataType: 'Array&lt;ReadOnlyFirst&gt;',
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: true,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: true,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    arrayOfEnum: {
-      name: 'arrayOfEnum',
-      baseName: 'array_of_enum',
-      datatype: 'Array&lt;string&gt;',
-      required: false,
-      itemsDataType: 'string',
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: true,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: true,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: true,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
+    arrayOfString: [
+      'arrayOfString', // name
+      'array_of_string', // baseName
+      'Array&lt;string&gt;', // datatype
+      false, // required
+      'string', // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      true, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      true, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    arrayArrayOfInteger: [
+      'arrayArrayOfInteger', // name
+      'array_array_of_integer', // baseName
+      'Array&lt;Array&lt;number&gt;&gt;', // datatype
+      false, // required
+      'Array&lt;number&gt;', // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      true, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      true, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    arrayArrayOfModel: [
+      'arrayArrayOfModel', // name
+      'array_array_of_model', // baseName
+      'Array&lt;Array&lt;ReadOnlyFirst&gt;&gt;', // datatype
+      false, // required
+      'Array&lt;ReadOnlyFirst&gt;', // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      true, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      true, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    arrayOfEnum: [
+      'arrayOfEnum', // name
+      'array_of_enum', // baseName
+      'Array&lt;string&gt;', // datatype
+      false, // required
+      'string', // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      true, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      true, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      true, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
   },
   baseNames: {
     arrayOfString: 'array_of_string',

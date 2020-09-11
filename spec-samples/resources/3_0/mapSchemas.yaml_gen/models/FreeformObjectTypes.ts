@@ -58,206 +58,206 @@ export const FreeformObjectTypesModel: GenericModel = {
   type: 'generic',
   parent: undefined,
   vars: {
-    exampleModel: {
-      name: 'exampleModel',
-      baseName: 'ExampleModel',
-      datatype: 'ExampleModel',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: true,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: false,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    modelWithAdditionalProperties: {
-      name: 'modelWithAdditionalProperties',
-      baseName: 'ModelWithAdditionalProperties',
-      datatype: 'ModelWithAdditionalProperties',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: false,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    modelWithStringToStringMapping: {
-      name: 'modelWithStringToStringMapping',
-      baseName: 'ModelWithStringToStringMapping',
-      datatype: '{ [key: string]: string; }',
-      required: false,
-      itemsDataType: 'string',
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: true,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: true,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    modelWithStringToModelMapping: {
-      name: 'modelWithStringToModelMapping',
-      baseName: 'ModelWithStringToModelMapping',
-      datatype: '{ [key: string]: ComplexModel; }',
-      required: false,
-      itemsDataType: 'ComplexModel',
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: true,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: true,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: true,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: false,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    complexModel: {
-      name: 'complexModel',
-      baseName: 'ComplexModel',
-      datatype: 'ComplexModel',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: true,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: false,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
+    exampleModel: [
+      'exampleModel', // name
+      'ExampleModel', // baseName
+      'ExampleModel', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      true, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      false, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    modelWithAdditionalProperties: [
+      'modelWithAdditionalProperties', // name
+      'ModelWithAdditionalProperties', // baseName
+      'ModelWithAdditionalProperties', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      false, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    modelWithStringToStringMapping: [
+      'modelWithStringToStringMapping', // name
+      'ModelWithStringToStringMapping', // baseName
+      '{ [key: string]: string; }', // datatype
+      false, // required
+      'string', // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      true, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      true, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    modelWithStringToModelMapping: [
+      'modelWithStringToModelMapping', // name
+      'ModelWithStringToModelMapping', // baseName
+      '{ [key: string]: ComplexModel; }', // datatype
+      false, // required
+      'ComplexModel', // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      true, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      true, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      true, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      false, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    complexModel: [
+      'complexModel', // name
+      'ComplexModel', // baseName
+      'ComplexModel', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      true, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      false, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
   },
   baseNames: {
     exampleModel: 'ExampleModel',

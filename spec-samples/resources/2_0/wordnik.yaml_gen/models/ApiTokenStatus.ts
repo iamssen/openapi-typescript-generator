@@ -63,246 +63,246 @@ export const ApiTokenStatusModel: GenericModel = {
   type: 'generic',
   parent: undefined,
   vars: {
-    valid: {
-      name: 'valid',
-      baseName: 'valid',
-      datatype: 'boolean',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: true,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    token: {
-      name: 'token',
-      baseName: 'token',
-      datatype: 'string',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: true,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    resetsInMillis: {
-      name: 'resetsInMillis',
-      baseName: 'resetsInMillis',
-      datatype: 'number',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: true,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: true,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    remainingCalls: {
-      name: 'remainingCalls',
-      baseName: 'remainingCalls',
-      datatype: 'number',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: true,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: true,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    expiresInMillis: {
-      name: 'expiresInMillis',
-      baseName: 'expiresInMillis',
-      datatype: 'number',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: true,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: true,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    totalRequests: {
-      name: 'totalRequests',
-      baseName: 'totalRequests',
-      datatype: 'number',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: true,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: true,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
+    valid: [
+      'valid', // name
+      'valid', // baseName
+      'boolean', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      true, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    token: [
+      'token', // name
+      'token', // baseName
+      'string', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      true, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    resetsInMillis: [
+      'resetsInMillis', // name
+      'resetsInMillis', // baseName
+      'number', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      true, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      true, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    remainingCalls: [
+      'remainingCalls', // name
+      'remainingCalls', // baseName
+      'number', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      true, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      true, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    expiresInMillis: [
+      'expiresInMillis', // name
+      'expiresInMillis', // baseName
+      'number', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      true, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      true, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    totalRequests: [
+      'totalRequests', // name
+      'totalRequests', // baseName
+      'number', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      true, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      true, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
   },
   baseNames: {
     valid: 'valid',

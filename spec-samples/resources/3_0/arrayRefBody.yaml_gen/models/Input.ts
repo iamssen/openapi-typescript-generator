@@ -42,126 +42,126 @@ export const InputModel: GenericModel = {
   type: 'generic',
   parent: undefined,
   vars: {
-    id: {
-      name: 'id',
-      baseName: 'id',
-      datatype: 'string',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: true,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    age: {
-      name: 'age',
-      baseName: 'age',
-      datatype: 'number',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: false,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: true,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: true,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
-    dt: {
-      name: 'dt',
-      baseName: 'dt',
-      datatype: 'Date',
-      required: false,
-      itemsDataType: undefined,
-      isAnyType: false,
-      isBinary: false,
-      isBoolean: false,
-      isByteArray: false,
-      isCircularReference: false,
-      isContainer: false,
-      isDate: false,
-      isDateTime: true,
-      isDiscriminator: false,
-      isDouble: false,
-      isEmail: false,
-      isEnum: false,
-      isFile: false,
-      isFloat: false,
-      isFreeFormObject: false,
-      isInherited: false,
-      isInteger: false,
-      isListContainer: false,
-      isLong: false,
-      isMapContainer: false,
-      isModel: false,
-      isNullable: false,
-      isNumber: false,
-      isNumeric: false,
-      isPrimitiveType: true,
-      isReadOnly: false,
-      isSelfReference: false,
-      isString: false,
-      isUri: false,
-      isUuid: false,
-      isWriteOnly: false,
-      isXmlAttribute: false,
-      isXmlWrapped: false,
-    },
+    id: [
+      'id', // name
+      'id', // baseName
+      'string', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      true, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    age: [
+      'age', // name
+      'age', // baseName
+      'number', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      false, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      true, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      true, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
+    dt: [
+      'dt', // name
+      'dt', // baseName
+      'Date', // datatype
+      false, // required
+      undefined, // itemsDataType
+      false, // isAnyType
+      false, // isBinary
+      false, // isBoolean
+      false, // isByteArray
+      false, // isCircularReference
+      false, // isContainer
+      false, // isDate
+      true, // isDateTime
+      false, // isDiscriminator
+      false, // isDouble
+      false, // isEmail
+      false, // isEnum
+      false, // isFile
+      false, // isFloat
+      false, // isFreeFormObject
+      false, // isInherited
+      false, // isInteger
+      false, // isListContainer
+      false, // isLong
+      false, // isMapContainer
+      false, // isModel
+      false, // isNullable
+      false, // isNumber
+      false, // isNumeric
+      true, // isPrimitiveType
+      false, // isReadOnly
+      false, // isSelfReference
+      false, // isString
+      false, // isUri
+      false, // isUuid
+      false, // isWriteOnly
+      false, // isXmlAttribute
+      false, // isXmlWrapped
+    ],
   },
   baseNames: {
     id: 'id',

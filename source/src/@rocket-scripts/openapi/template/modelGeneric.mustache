@@ -45,46 +45,46 @@ export const {{classname}}Model: GenericModel = {
   {{#hasVars}}
   vars: {
     {{#vars}}
-    '{{name}}': {
-      name: '{{name}}',
-      baseName: '{{baseName}}',
-      datatype: '{{datatype}}',
-      required: {{required}},
-      itemsDataType: {{#items}}'{{datatype}}'{{/items}}{{^items}}undefined{{/items}},
-      isAnyType: {{isAnyType}},
-      isBinary: {{isBinary}},
-      isBoolean: {{isBoolean}},
-      isByteArray: {{isByteArray}},
-      isCircularReference: {{isCircularReference}},
-      isContainer: {{isContainer}},
-      isDate: {{isDate}},
-      isDateTime: {{isDateTime}},
-      isDiscriminator: {{isDiscriminator}},
-      isDouble: {{isDouble}},
-      isEmail: {{isEmail}},
-      isEnum: {{isEnum}},
-      isFile: {{isFile}},
-      isFloat: {{isFloat}},
-      isFreeFormObject: {{isFreeFormObject}},
-      isInherited: {{isInherited}},
-      isInteger: {{isInteger}},
-      isListContainer: {{isListContainer}},
-      isLong: {{isLong}},
-      isMapContainer: {{isMapContainer}},
-      isModel: {{isModel}},
-      isNullable: {{isNullable}},
-      isNumber: {{isNumber}},
-      isNumeric: {{isNumeric}},
-      isPrimitiveType: {{isPrimitiveType}},
-      isReadOnly: {{isReadOnly}},
-      isSelfReference: {{isSelfReference}},
-      isString: {{isString}},
-      isUri: {{isUri}},
-      isUuid: {{isUuid}},
-      isWriteOnly: {{isWriteOnly}},
-      isXmlAttribute: {{isXmlAttribute}},
-      isXmlWrapped: {{isXmlWrapped}},
-    },
+    '{{name}}': [
+      '{{name}}', // name
+      '{{baseName}}', // baseName
+      '{{datatype}}', // datatype
+      {{required}}, // required
+      {{#items}}'{{datatype}}'{{/items}}{{^items}}undefined{{/items}}, // itemsDataType
+      {{isAnyType}}, // isAnyType
+      {{isBinary}}, // isBinary
+      {{isBoolean}}, // isBoolean
+      {{isByteArray}}, // isByteArray
+      {{isCircularReference}}, // isCircularReference
+      {{isContainer}}, // isContainer
+      {{isDate}}, // isDate
+      {{isDateTime}}, // isDateTime
+      {{isDiscriminator}}, // isDiscriminator
+      {{isDouble}}, // isDouble
+      {{isEmail}}, // isEmail
+      {{isEnum}}, // isEnum
+      {{isFile}}, // isFile
+      {{isFloat}}, // isFloat
+      {{isFreeFormObject}}, // isFreeFormObject
+      {{isInherited}}, // isInherited
+      {{isInteger}}, // isInteger
+      {{isListContainer}}, // isListContainer
+      {{isLong}}, // isLong
+      {{isMapContainer}}, // isMapContainer
+      {{isModel}}, // isModel
+      {{isNullable}}, // isNullable
+      {{isNumber}}, // isNumber
+      {{isNumeric}}, // isNumeric
+      {{isPrimitiveType}}, // isPrimitiveType
+      {{isReadOnly}}, // isReadOnly
+      {{isSelfReference}}, // isSelfReference
+      {{isString}}, // isString
+      {{isUri}}, // isUri
+      {{isUuid}}, // isUuid
+      {{isWriteOnly}}, // isWriteOnly
+      {{isXmlAttribute}}, // isXmlAttribute
+      {{isXmlWrapped}}, // isXmlWrapped
+    ],
     {{/vars}}
   },
   baseNames: {

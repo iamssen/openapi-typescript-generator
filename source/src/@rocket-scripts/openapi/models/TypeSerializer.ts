@@ -2,49 +2,90 @@
 
 import { APISerializeError } from '../errors/APISerializeError';
 
-export interface Property {
-  name: string;
-  baseName: string;
-  datatype: string;
-  required: boolean;
+export type Property = [
+  name: string,
+  baseName: string,
+  datatype: string,
+  required: boolean,
   /**
    * Type of listContainer, mapContainer
    * from {{#items}}{{datatype}}{{/items}}
    */
-  itemsDataType?: string;
-  isAnyType: boolean;
-  isBinary: boolean;
-  isBoolean: boolean;
-  isByteArray: boolean;
-  isCircularReference: boolean;
-  isContainer: boolean;
-  isDate: boolean;
-  isDateTime: boolean;
-  isDiscriminator: boolean;
-  isDouble: boolean;
-  isEmail: boolean;
-  isEnum: boolean;
-  isFile: boolean;
-  isFloat: boolean;
-  isFreeFormObject: boolean;
-  isInherited: boolean;
-  isInteger: boolean;
-  isListContainer: boolean;
-  isLong: boolean;
-  isMapContainer: boolean;
-  isModel: boolean;
-  isNullable: boolean;
-  isNumber: boolean;
-  isNumeric: boolean;
-  isPrimitiveType: boolean;
-  isReadOnly: boolean;
-  isSelfReference: boolean;
-  isString: boolean;
-  isUri: boolean;
-  isUuid: boolean;
-  isWriteOnly: boolean;
-  isXmlAttribute: boolean;
-  isXmlWrapped: boolean;
+  itemsDataType: string | undefined,
+  isAnyType: boolean,
+  isBinary: boolean,
+  isBoolean: boolean,
+  isByteArray: boolean,
+  isCircularReference: boolean,
+  isContainer: boolean,
+  isDate: boolean,
+  isDateTime: boolean,
+  isDiscriminator: boolean,
+  isDouble: boolean,
+  isEmail: boolean,
+  isEnum: boolean,
+  isFile: boolean,
+  isFloat: boolean,
+  isFreeFormObject: boolean,
+  isInherited: boolean,
+  isInteger: boolean,
+  isListContainer: boolean,
+  isLong: boolean,
+  isMapContainer: boolean,
+  isModel: boolean,
+  isNullable: boolean,
+  isNumber: boolean,
+  isNumeric: boolean,
+  isPrimitiveType: boolean,
+  isReadOnly: boolean,
+  isSelfReference: boolean,
+  isString: boolean,
+  isUri: boolean,
+  isUuid: boolean,
+  isWriteOnly: boolean,
+  isXmlAttribute: boolean,
+  isXmlWrapped: boolean,
+];
+
+export enum PropertyIndex {
+  name,
+  baseName,
+  datatype,
+  required,
+  itemsDataType,
+  isAnyType,
+  isBinary,
+  isBoolean,
+  isByteArray,
+  isCircularReference,
+  isContainer,
+  isDate,
+  isDateTime,
+  isDiscriminator,
+  isDouble,
+  isEmail,
+  isEnum,
+  isFile,
+  isFloat,
+  isFreeFormObject,
+  isInherited,
+  isInteger,
+  isListContainer,
+  isLong,
+  isMapContainer,
+  isModel,
+  isNullable,
+  isNumber,
+  isNumeric,
+  isPrimitiveType,
+  isReadOnly,
+  isSelfReference,
+  isString,
+  isUri,
+  isUuid,
+  isWriteOnly,
+  isXmlAttribute,
+  isXmlWrapped,
 }
 
 export interface EnumModel {
@@ -124,46 +165,61 @@ export class TypeSerializer {
       ...(additionalPropertiesType === true ? jsonObject : {}),
       ...Object.keys(vars).reduce((obj, name) => {
         const property: Property = vars[name];
-        const value: unknown = jsonObject[property.baseName];
+        const value: unknown = jsonObject[property[PropertyIndex.baseName]];
 
         if (value === undefined) {
-          if (property.required) {
-            throw new APISerializeError(`"${property.baseName}" is required`);
+          if (property[PropertyIndex.required]) {
+            throw new APISerializeError(
+              `"${property[PropertyIndex.baseName]}" is required`,
+            );
           } else {
             obj[name] = undefined;
           }
         } else if (value === null) {
-          if (property.isNullable) {
+          if (property[PropertyIndex.isNullable]) {
             obj[name] = null;
           } else {
             throw new APISerializeError(
-              `"${property.baseName}" is not nullable`,
+              `"${property[PropertyIndex.baseName]}" is not nullable`,
             );
           }
-        } else if (property.isPrimitiveType) {
+        } else if (property[PropertyIndex.isPrimitiveType]) {
           obj[name] =
             typeof value === 'string' &&
-            (property.isDate || property.isDateTime)
+            (property[PropertyIndex.isDate] ||
+              property[PropertyIndex.isDateTime])
               ? new Date(value)
               : value;
-        } else if (Array.isArray(value) && property.isListContainer) {
-          if (!property.itemsDataType) {
+        } else if (
+          Array.isArray(value) &&
+          property[PropertyIndex.isListContainer]
+        ) {
+          if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
             );
           } else {
-            obj[name] = this.toValueObjectList(property.itemsDataType)(value);
+            obj[name] = this.toValueObjectList(
+              property[PropertyIndex.itemsDataType]!,
+            )(value);
           }
-        } else if (value instanceof Object && property.isMapContainer) {
-          if (!property.itemsDataType) {
+        } else if (
+          value instanceof Object &&
+          property[PropertyIndex.isMapContainer]
+        ) {
+          if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
             );
           } else {
-            obj[name] = this.toValueObjectMap(property.itemsDataType)(value);
+            obj[name] = this.toValueObjectMap(
+              property[PropertyIndex.itemsDataType]!,
+            )(value);
           }
-        } else if (!property.isFreeFormObject) {
-          obj[name] = this.toValueObject(property.datatype)(value);
+        } else if (!property[PropertyIndex.isFreeFormObject]) {
+          obj[name] = this.toValueObject(property[PropertyIndex.datatype])(
+            value,
+          );
         } else {
           obj[name] = value;
         }
@@ -187,49 +243,63 @@ export class TypeSerializer {
       ...(additionalPropertiesType === true ? valueObject : {}),
       ...Object.keys(vars).reduce((obj, name) => {
         const property: Property = vars[name];
-        const value: unknown = valueObject[property.baseName];
+        const value: unknown = valueObject[property[PropertyIndex.baseName]];
 
         if (value === undefined) {
-          if (property.required) {
-            throw new APISerializeError(`"${property.baseName}" is required`);
+          if (property[PropertyIndex.required]) {
+            throw new APISerializeError(
+              `"${property[PropertyIndex.baseName]}" is required`,
+            );
           } else {
             obj[name] = undefined;
           }
         } else if (value === null) {
-          if (property.isNullable) {
+          if (property[PropertyIndex.isNullable]) {
             obj[name] = null;
           } else {
             throw new APISerializeError(
-              `"${property.baseName}" is not nullable`,
+              `"${property[PropertyIndex.baseName]}" is not nullable`,
             );
           }
-        } else if (property.isPrimitiveType) {
+        } else if (property[PropertyIndex.isPrimitiveType]) {
           obj[name] =
             value instanceof Date
-              ? property.isDate
+              ? property[PropertyIndex.isDate]
                 ? value.toISOString().substr(0, 10)
-                : property.isDateTime
+                : property[PropertyIndex.isDateTime]
                 ? value.toISOString()
                 : value
               : value;
-        } else if (Array.isArray(value) && property.isListContainer) {
-          if (!property.itemsDataType) {
+        } else if (
+          Array.isArray(value) &&
+          property[PropertyIndex.isListContainer]
+        ) {
+          if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
             );
           } else {
-            obj[name] = this.toJsonObjectList(property.itemsDataType)(value);
+            obj[name] = this.toJsonObjectList(
+              property[PropertyIndex.itemsDataType]!,
+            )(value);
           }
-        } else if (value instanceof Object && property.isMapContainer) {
-          if (!property.itemsDataType) {
+        } else if (
+          value instanceof Object &&
+          property[PropertyIndex.isMapContainer]
+        ) {
+          if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
             );
           } else {
-            obj[name] = this.toJsonObjectMap(property.itemsDataType)(value);
+            obj[name] = this.toJsonObjectMap(
+              property[PropertyIndex.itemsDataType]!,
+            )(value);
           }
-        } else if (!property.isFreeFormObject) {
-          obj[name] = this.toJsonObject(property.datatype)(value);
+        } else if (!property[PropertyIndex.isFreeFormObject]) {
+          obj[name] = this.toJsonObject(property[PropertyIndex.datatype])(
+            value,
+          );
         } else {
           obj[name] = value;
         }
