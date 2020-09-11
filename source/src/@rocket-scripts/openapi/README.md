@@ -49,7 +49,7 @@ const config = {
   basePath: server.getBasePath(),
 };
 
-const SomeData = await pipe(
+const result: SomeData = await pipe(
   defaultApi.someGetRequest(config),
   fetchRequest(),
   defaultApi.someGetReponse(),
@@ -57,7 +57,7 @@ const SomeData = await pipe(
 
 // or
 
-const SomeData = await pipe(
+const result: SomeData = await pipe(
   fetchRequest(),
   defaultApi.someGetReponse(),
 )({ url: 'http://custom/url/path', init: {} });
@@ -67,5 +67,27 @@ const SomeData = await pipe(
 const response: Response = await pipe(
   defaultApi.someGetRequest(config),
   fetchRequest(),
+)();
+```
+
+## Take Serialize data with Response
+
+```ts
+import {
+  APIExceptionError,
+  pipe,
+  fetchRequest,
+  takeResponse,
+} from '@rocket-scripts/openapi';
+import { defaultApi, SomeData } from './client';
+
+const config = {
+  basePath: server.getBasePath(),
+};
+
+const { value, response }: { value: SomeData; response: Response } = await pipe(
+  defaultApi.someGetRequest(config),
+  fetchRequest(),
+  takeResponse(defaultApi.someGetReponse()),
 )();
 ```
