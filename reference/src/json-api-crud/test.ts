@@ -1,5 +1,10 @@
 import { createMockupServer } from '@rocket-scripts/mockup';
-import { APIExceptionError } from '@rocket-scripts/openapi';
+import {
+  APIExceptionError,
+  fetchRequest,
+  pipe,
+  takeResponse,
+} from '@rocket-scripts/openapi';
 import { defaultApi, Doc, Exception, NewDoc, Success } from './client';
 
 describe('json-api-crud', () => {
@@ -228,5 +233,21 @@ describe('json-api-crud', () => {
     expect((error as APIExceptionError<Exception>).exception).toMatchObject(
       errors[code],
     );
+  });
+
+  test('take response', async () => {
+    // Arrange
+    process.env.API_ERROR = undefined;
+
+    // Act
+    const { value, response } = await pipe(
+      defaultApi.docsDocIdGetRequest({ basePath: server.getBasePath() }),
+      fetchRequest(),
+      takeResponse(defaultApi.docsDocIdGetResponse()),
+    )({ docId: 150 });
+
+    // Assert
+    expect(value).toMatchObject(doc);
+    expect(response.status).toBe(200);
   });
 });

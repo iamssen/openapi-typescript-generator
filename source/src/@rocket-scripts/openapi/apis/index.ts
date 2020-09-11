@@ -4,6 +4,7 @@ import { QuerystringStringify } from './querystring';
 export * from './collectionFormats';
 export * from './fetchRequest';
 export * from './querystring';
+export * from './takeResponse';
 
 export interface RequestConfiguration {
   basePath?: string;
