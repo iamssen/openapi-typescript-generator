@@ -7,7 +7,7 @@
   "workspaces": [
     "packages",
     "reference",
-    "spec-files"
+    "spec-samples"
   ],
   "scripts": {
     "build": "yarn workspace packages run build",
