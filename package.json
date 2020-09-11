@@ -5,13 +5,13 @@
   "license": "MIT",
   "repository": "github:rocket-hangar/openapi-typescript-generator",
   "workspaces": [
-    "source",
+    "packages",
     "reference",
     "spec-files"
   ],
   "scripts": {
-    "build": "yarn workspace source run build",
-    "publish": "yarn workspace source run build && yarn workspace source run publish",
+    "build": "yarn workspace packages run build",
+    "publish": "yarn workspace packages run build && yarn workspace packages run publish",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "test": "yarn workspace reference run test"

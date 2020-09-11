@@ -14,7 +14,7 @@ module.exports = {
       // auto source import every markdown documents
       // @see https://www.npmjs.com/package/@handbook/markdown-source-import
       `markdown-source-import README.md --git-add`,
-      ...cp('README.md', 'source/src/@rocket-scripts/openapi/README.md'),
+      ...cp('README.md', 'packages/src/@rocket-scripts/openapi/README.md'),
       // see "lint-staged" on "package.json"
       `lint-staged`,
       // run workspaces precommit hook

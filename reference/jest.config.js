@@ -10,11 +10,11 @@ module.exports = {
     ...jestPreset.moduleNameMapper,
     '@rocket-scripts/openapi': path.join(
       __dirname,
-      '../source/src/@rocket-scripts/openapi',
+      '../packages/src/@rocket-scripts/openapi',
     ),
     '@rocket-scripts/mockup': path.join(
       __dirname,
-      '../source/src/@rocket-scripts/mockup',
+      '../packages/src/@rocket-scripts/mockup',
     ),
   },
 };

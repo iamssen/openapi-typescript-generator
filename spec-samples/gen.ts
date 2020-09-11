@@ -5,7 +5,7 @@ import * as path from 'path';
 
 const template = path.resolve(
   __dirname,
-  '../source/src/@rocket-scripts/openapi/template',
+  '../packages/src/@rocket-scripts/openapi/template',
 );
 
 (async () => {

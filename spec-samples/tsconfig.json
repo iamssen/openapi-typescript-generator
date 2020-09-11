@@ -10,10 +10,10 @@
     "baseUrl": ".",
     "paths": {
       "@rocket-scripts/openapi": [
-        "../source/src/@rocket-scripts/openapi"
+        "../packages/src/@rocket-scripts/openapi"
       ],
       "@rocket-scripts/openapi/*": [
-        "../source/src/@rocket-scripts/openapi/*"
+        "../packages/src/@rocket-scripts/openapi/*"
       ]
     }
   }

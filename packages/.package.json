@@ -3,7 +3,7 @@
   "license": "MIT",
   "repository": "github:rocket-hangar/openapi-typescript-generator",
   "bugs": "https://github.com/rocket-hangar/openapi-typescript-generator/issues",
-  "homepage": "https://github.com/rocket-hangar/openapi-typescript-generator/tree/master/source/src/{name}",
+  "homepage": "https://github.com/rocket-hangar/openapi-typescript-generator/tree/master/packages/src/{name}",
   "engines": {
     "node": ">=10"
   },
