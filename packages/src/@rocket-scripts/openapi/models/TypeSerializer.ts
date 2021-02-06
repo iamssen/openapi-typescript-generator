@@ -29,9 +29,9 @@ export type Property = [
   isFreeFormObject: boolean,
   isInherited: boolean,
   isInteger: boolean,
-  isListContainer: boolean,
+  isArray: boolean,
   isLong: boolean,
-  isMapContainer: boolean,
+  isMap: boolean,
   isModel: boolean,
   isNullable: boolean,
   isNumber: boolean,
@@ -70,9 +70,9 @@ export enum PropertyIndex {
   isFreeFormObject,
   isInherited,
   isInteger,
-  isListContainer,
+  isArray,
   isLong,
-  isMapContainer,
+  isMap,
   isModel,
   isNullable,
   isNumber,
@@ -190,10 +190,7 @@ export class TypeSerializer {
               property[PropertyIndex.isDateTime])
               ? new Date(value)
               : value;
-        } else if (
-          Array.isArray(value) &&
-          property[PropertyIndex.isListContainer]
-        ) {
+        } else if (Array.isArray(value) && property[PropertyIndex.isArray]) {
           if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
@@ -203,10 +200,7 @@ export class TypeSerializer {
               property[PropertyIndex.itemsDataType]!,
             )(value);
           }
-        } else if (
-          value instanceof Object &&
-          property[PropertyIndex.isMapContainer]
-        ) {
+        } else if (value instanceof Object && property[PropertyIndex.isMap]) {
           if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
@@ -270,10 +264,7 @@ export class TypeSerializer {
                 ? value.toISOString()
                 : value
               : value;
-        } else if (
-          Array.isArray(value) &&
-          property[PropertyIndex.isListContainer]
-        ) {
+        } else if (Array.isArray(value) && property[PropertyIndex.isArray]) {
           if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,
@@ -283,10 +274,7 @@ export class TypeSerializer {
               property[PropertyIndex.itemsDataType]!,
             )(value);
           }
-        } else if (
-          value instanceof Object &&
-          property[PropertyIndex.isMapContainer]
-        ) {
+        } else if (value instanceof Object && property[PropertyIndex.isMap]) {
           if (!property[PropertyIndex.itemsDataType]) {
             throw new APISerializeError(
               `Undefined items.datatype from ${property}`,

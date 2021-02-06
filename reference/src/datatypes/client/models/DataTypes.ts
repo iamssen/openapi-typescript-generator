@@ -114,9 +114,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       true, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -154,9 +154,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       true, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -194,9 +194,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -234,9 +234,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -274,9 +274,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -314,9 +314,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -354,9 +354,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -394,9 +394,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -434,9 +434,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -474,9 +474,9 @@ export const DataTypesModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber

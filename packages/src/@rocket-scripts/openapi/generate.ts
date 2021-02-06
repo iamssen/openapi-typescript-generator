@@ -7,7 +7,7 @@ import os from 'os';
 import path from 'path';
 import prettier from 'prettier';
 
-const openapiVersion: string = '5.0.0-beta2';
+const openapiVersion: string = '5.0.0';
 
 async function download(url: string, file: string) {
   return new Promise((resolve) => {

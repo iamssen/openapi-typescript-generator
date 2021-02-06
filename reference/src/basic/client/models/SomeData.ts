@@ -51,9 +51,9 @@ export const SomeDataModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber

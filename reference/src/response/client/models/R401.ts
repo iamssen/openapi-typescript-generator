@@ -67,9 +67,9 @@ export const R401Model: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       false, // isNumber
@@ -107,9 +107,9 @@ export const R401Model: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       false, // isModel
       false, // isNullable
       true, // isNumber
@@ -147,9 +147,9 @@ export const R401Model: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       true, // isModel
       false, // isNullable
       false, // isNumber

@@ -53,9 +53,9 @@ export const SuccessModel: GenericModel = {
       false, // isFreeFormObject
       false, // isInherited
       false, // isInteger
-      false, // isListContainer
+      false, // isArray
       false, // isLong
-      false, // isMapContainer
+      false, // isMap
       true, // isModel
       false, // isNullable
       false, // isNumber

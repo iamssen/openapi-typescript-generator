@@ -74,7 +74,7 @@ export const {{nickname}}Request = ({
   const queryParameters: UrlQueryInput = {};
 
   {{#queryParams}}
-  {{#isListContainer}}
+  {{#isArray}}
   if (requestParameters.{{paramName}}) {
     {{#isCollectionFormatMulti}}
     queryParameters['{{baseName}}'] = requestParameters.{{paramName}};
@@ -83,8 +83,8 @@ export const {{nickname}}Request = ({
     queryParameters['{{baseName}}'] = requestParameters.{{paramName}}.join(collectionFormats["{{collectionFormat}}"]);
     {{/isCollectionFormatMulti}}
   }
-  {{/isListContainer}}
-  {{^isListContainer}}
+  {{/isArray}}
+  {{^isArray}}
   if (requestParameters.{{paramName}} !== undefined) {
     {{#isDateTime}}
     queryParameters['{{baseName}}'] = (requestParameters.{{paramName}} as any).toISOString();
@@ -98,7 +98,7 @@ export const {{nickname}}Request = ({
     {{/isDate}}
     {{/isDateTime}}
   }
-  {{/isListContainer}}
+  {{/isArray}}
   {{/queryParams}}
 
   {{! header }}
@@ -114,16 +114,16 @@ export const {{nickname}}Request = ({
   {{/bodyParam}}
 
   {{#headerParams}}
-  {{#isListContainer}}
+  {{#isArray}}
   if (requestParameters.{{paramName}}) {
     headerParameters.set('{{baseName}}', requestParameters.{{paramName}}.join(collectionFormats["{{collectionFormat}}"]));
   }
-  {{/isListContainer}}
-  {{^isListContainer}}
+  {{/isArray}}
+  {{^isArray}}
   if (requestParameters.{{paramName}} !== undefined && requestParameters.{{paramName}} !== null) {
     headerParameters.set('{{baseName}}', String(requestParameters.{{paramName}}));
   }
-  {{/isListContainer}}
+  {{/isArray}}
   {{/headerParams}}
 
   {{#authMethods}}
@@ -195,7 +195,7 @@ export const {{nickname}}Request = ({
   }
 
   {{#formParams}}
-  {{#isListContainer}}
+  {{#isArray}}
   if (requestParameters.{{paramName}}) {
     {{#isCollectionFormatMulti}}
     requestParameters.{{paramName}}.forEach((element) => {
@@ -207,12 +207,12 @@ export const {{nickname}}Request = ({
     {{/isCollectionFormatMulti}}
   }
 
-  {{/isListContainer}}
-  {{^isListContainer}}
+  {{/isArray}}
+  {{^isArray}}
   if (requestParameters.{{paramName}} !== undefined) {
     formParams.append('{{baseName}}', requestParameters.{{paramName}} as any);
   }
-  {{/isListContainer}}
+  {{/isArray}}
   {{/formParams}}
   {{/hasFormParams}}
 
@@ -224,7 +224,7 @@ export const {{nickname}}Request = ({
   {{#hasBodyParam}}
   {{#bodyParam}}
   {{#isContainer}}
-  const body = JSON.stringify(requestParameters.{{paramName}}{{#isListContainer}}{{#items}}{{^isPrimitiveType}}?.map(typeSerializer.toJsonObject('{{datatype}}')){{/isPrimitiveType}}{{/items}}{{/isListContainer}});
+  const body = JSON.stringify(requestParameters.{{paramName}}{{#isArray}}{{#items}}{{^isPrimitiveType}}?.map(typeSerializer.toJsonObject('{{datatype}}')){{/isPrimitiveType}}{{/items}}{{/isArray}});
   {{/isContainer}}
   {{^isContainer}}
   {{^isPrimitiveType}}
@@ -273,28 +273,28 @@ export const {{nickname}}Response = (configuration: ResponseConfiguration = {}) 
     {{/isResponseFile}}
     {{^isResponseFile}}
     {{#returnTypeIsPrimitive}}
-    {{#isMapContainer}}
+    {{#isMap}}
     return response.json();
-    {{/isMapContainer}}
-    {{#isListContainer}}
+    {{/isMap}}
+    {{#isArray}}
     return response.json();
-    {{/isListContainer}}
+    {{/isArray}}
     {{#returnSimpleType}}
     return response.text().then(typeSerializer.toValueObject('{{returnBaseType}}'));
     {{/returnSimpleType}}
     {{/returnTypeIsPrimitive}}
     {{^returnTypeIsPrimitive}}
-    {{#isListContainer}}
+    {{#isArray}}
     return response.json().then(typeSerializer.toValueObjectList('{{returnBaseType}}'));
-    {{/isListContainer}}
-    {{^isListContainer}}
-    {{#isMapContainer}}
+    {{/isArray}}
+    {{^isArray}}
+    {{#isMap}}
     return response.json().then(typeSerializer.toValueObjectMap('{{returnBaseType}}'));
-    {{/isMapContainer}}
-    {{^isMapContainer}}
+    {{/isMap}}
+    {{^isMap}}
     return response.json().then(typeSerializer.toValueObject('{{returnBaseType}}'));
-    {{/isMapContainer}}
-    {{/isListContainer}}
+    {{/isMap}}
+    {{/isArray}}
     {{/returnTypeIsPrimitive}}
     {{/isResponseFile}}
     {{/returnType}}
