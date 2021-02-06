@@ -33,7 +33,7 @@ export function createMockupServer(): ServerResult {
     app.use(router.routes());
     app.use(router.allowedMethods());
 
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       server = app.listen(port, resolve);
     });
   }

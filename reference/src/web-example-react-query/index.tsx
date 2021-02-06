@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { useQuery } from 'react-query';
+import { useQuery, QueryClientProvider, QueryClient } from 'react-query';
 import { defaultApi, servers } from './client';
 
 function App() {
@@ -32,7 +32,12 @@ function App() {
   );
 }
 
-render(<App />, document.querySelector('#app'));
+render(
+  <QueryClientProvider client={new QueryClient()}>
+    <App />
+  </QueryClientProvider>,
+  document.querySelector('#app'),
+);
 
 // Hot Module Replacement
 if (module.hot) {

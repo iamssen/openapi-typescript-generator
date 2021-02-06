@@ -13,11 +13,11 @@ import path from 'path';
         alias: {
           '@rocket-scripts/openapi': path.resolve(
             __dirname,
-            '../../source/out/packages/rocket-scripts__openapi',
+            '../../packages/out/packages/rocket-scripts__openapi',
           ),
           '@rocket-scripts/mockup': path.resolve(
             __dirname,
-            '../../source/out/packages/rocket-scripts__mockup',
+            '../../packages/out/packages/rocket-scripts__mockup',
           ),
         },
       },
@@ -27,7 +27,7 @@ import path from 'path';
   const browser = await puppeteer.launch({
     //userDataDir: process.env.CHROMIUM_USER_DATA_DEBUG,
     headless: false,
-    defaultViewport: null,
+    //defaultViewport: null,
     args: [
       '--start-fullscreen',
       `--remote-debugging-port=${remoteDebuggingPort}`,
@@ -38,13 +38,13 @@ import path from 'path';
   const [page] = await browser.pages();
   await page.goto(`http://localhost:${port}`);
 
-  await page.waitForFunction(
-    `document.querySelector('#app h1').innerHTML === 'Hello World!'`,
-    {
-      timeout: 1000 * 60,
-      polling: 1000 * 3,
-    },
-  );
+  //await page.waitForFunction(
+  //  `document.querySelector('#app h1').innerHTML === 'Hello World!'`,
+  //  {
+  //    timeout: 1000 * 60,
+  //    polling: 1000 * 3,
+  //  },
+  //);
 
   // if you want to start with another situation
   // you can make another script file like this script file
